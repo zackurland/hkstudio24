@@ -16,6 +16,7 @@ class Admin::ProductsController < AdminController
       redirect_to admin_product_path(@product)
     else
       @product.build_photo
+      @categories = Category.all.includes(:tags)
       render :new
     end
   end
@@ -31,6 +32,7 @@ class Admin::ProductsController < AdminController
     if @product.update_attributes(product_params)
       redirect_to admin_product_path(@product)
     else
+      @categories = Category.all.includes(:tags)
       render :edit
     end
   end

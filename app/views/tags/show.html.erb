@@ -1,0 +1,35 @@
+<div class="row mhn">
+  <div class="col-sm-3 phn">
+    <% Category.all.each do |category| %>
+      <div class="fsm">
+        <%= category.name %>
+      </div>
+      <% category.tags.each do |tag| %>
+        <div>
+          <%= link_to tag.name, category_tag_path(category, tag) %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-sm-9 phn">
+    <div class="phxs">
+      <div class="fsxl">
+        <%= @tag.name %>
+      </div>
+      <div class="row nmhxs js-masonry">
+        <% @products.each do |product| %>
+          <div id="product-<%= product.id %>" class="col-xs-4 phxs mtm pointer js-masonry-item js-toggle" data-toggle-target="#<%= "product-#{product.id}" %>" data-toggle-class="active">
+            <div class="paxs bss bwas bc-12 bc-red-active">
+              <div class="bss bwas bc-12 bc-red-active">
+                <%= image_tag product.photo.url(:medium), class: "img-responsive" %>
+              </div>
+              <div class="mtxs">
+                <%= product.name %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

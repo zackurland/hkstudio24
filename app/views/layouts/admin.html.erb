@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hkstudio - Admin Panel</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="relative absolute top left fill zxs">
+    <div class="row mhn">
+      <div class="col-sm-3 phn absolute top bottom bg-14 bss bwrs bc-2 hidden-xs">
+        <div class="absolute top left right dvl">
+          <div class="dvl lhl bg-1 c-4 fsl text-center">
+            HK STUDIO
+          </div>
+          <div class="pas fss">
+            <div class="mtxxxs-plus">
+              <%= link_to "Products", admin_products_path %>
+            </div>
+            <div class="mtxxxs-plus">
+              <%= link_to "Categories", admin_categories_path %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-9 col-sm-offset-3 phn absolute top bottom" style="overflow-y: auto">
+        <div class="pam">
+          <%= yield %>
+        </div>
+      </div>
+      <div id="account" class="col-xs-12 col-sm-3 col-md-2 phn mtxxl absolute top right zxl hide">
+        <div class="mhxs bg-1 c-16 fsxxxs">
+          <div class="phxs pvm c-4 nowrap no-overflow" style="text-overflow: ellipsis;">
+          </div>
+          <div class="paxs">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

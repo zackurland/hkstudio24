@@ -1,0 +1,32 @@
+<% if @category.errors.any? %>
+  <% @category.errors.full_messages.each do |message| %>
+    <div class="mtxxxs-plus c-red">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+<%= form_for [:admin, @category] do |f| %>
+  <div class="row nmhxs">
+    <div class="col-lg-8 phxs">
+      <div class="mtm-plus">
+        <%= f.text_field :name, placeholder: "Name", class: "paxs bss bwas bc-4 full-width" %>
+      </div>
+      <div class="mtm-plus fsxs">
+        Tags
+      </div>
+      <div id="tags-list" class="mtm-plus">
+        <%= f.fields_for :tags do |tags_fields| %>
+          <div class="mtxs">
+            <%= tags_fields.text_field :name, placeholder: "Tag", class: "paxs bss bwas bc-4 full-width js-admin-tag" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="mtm-plus">
+        <a href="#" class="js-admin-tag-add"><i class="fa fa-plus"></i> Add Tag</a>
+      </div>
+      <div class="mtm-plus">
+        <%= f.submit class: "btn btn-primary full-width" %>
+      </div>
+    </div>
+  </div>
+<% end %>

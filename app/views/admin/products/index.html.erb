@@ -1,0 +1,26 @@
+<div class="row nmhxs">
+  <div class="col-lg-8">
+    <%= link_to "New Product", new_admin_product_path, class: "c-red" %>
+    <table class="full-width">
+      <tbody>
+        <% @products.each_with_index do |product, index| %>
+          <tr class="pas<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
+            <td class="plxs prxxxs pvxs fwl full-width">
+              <%= product.name %>
+            </td>
+            <td class="phxxxs pvxs">
+              <%= link_to edit_admin_product_path(product), class: "btn btn-primary" do %>
+                <i class="fa fa-edit"></i> <span class="hidden-xs">Edit</span>
+              <% end %>
+            </td>
+            <td class="plxxxs prxs pvxs">
+              <%= link_to admin_product_path(product), method: :delete, class: "btn btn-primary" do %>
+                <i class="fa fa-times"></i> <span class="hidden-xs">Delete</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

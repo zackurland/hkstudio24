@@ -1,0 +1,26 @@
+<div class="row nmhxs">
+  <div class="col-lg-8">
+    <%= link_to "New Category", new_admin_category_path, class: "c-red" %>
+    <table class="full-width">
+      <tbody>
+        <% @categories.each_with_index do |category, index| %>
+          <tr class="pas<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
+            <td class="plxs prxxxs pvxs fwl full-width">
+              <%= category.name %>
+            </td>
+            <td class="phxxxs pvxs">
+              <%= link_to edit_admin_category_path(category), class: "btn btn-primary" do %>
+                <i class="fa fa-edit"></i> <span class="hidden-xs">Edit</span>
+              <% end %>
+            </td>
+            <td class="plxxxs prxs pvxs">
+              <%= link_to admin_category_path(category), method: :delete, class: "btn btn-primary" do %>
+                <i class="fa fa-times"></i> <span class="hidden-xs">Delete</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

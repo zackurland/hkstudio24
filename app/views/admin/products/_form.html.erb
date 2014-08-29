@@ -1,0 +1,44 @@
+<% if @product.errors.any? %>
+  <% @product.errors.full_messages.each do |message| %>
+    <div class="mtxxxs-plus c-red">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+<%= form_for [:admin, @product] do |f| %>
+  <div class="row nmhxs">
+    <div class="col-lg-8 phxs">
+      <div class="mtm-plus">
+        <%= f.text_field :name, placeholder: "Name", class: "paxs bss bwas bc-4 full-width" %>
+      </div>
+      <div class="mtm-plus">
+        <%= f.text_field :dimensions, placeholder: "Dimensions", class: "paxs bss bwas bc-4 full-width" %>
+      </div>
+      <div class="mtm-plus">
+        <%= f.text_field :cost_in_cents, placeholder: "Cost", class: "paxs bss bwas bc-4 full-width" %>
+      </div>
+      <div class="mtm-plus">
+        <% if @product.photo.attachment? %>
+          <%= image_tag @product.photo.url(:thumbnail) %>
+        <% end %>
+        <%= f.fields_for :photo do |photo_fields| %>
+          <%= photo_fields.file_field :attachment %>
+        <% end %>
+      </div>
+      <div class="mtm-plus">
+        Tags
+      </div>
+      <div class="mtm-plus">
+        <% @categories.each do |category| %>
+          <div class="fss"><%= category.name %></div>
+          <% category.tags.each do |tag| %>
+            <div class=""><%= f.check_box :tag_ids, { :multiple => true }, tag.id, nil %> <%= tag.name %></div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="mtm-plus">
+        <%= f.submit class: "btn btn-primary full-width" %>
+      </div>
+    </div>
+  </div>
+<% end %>

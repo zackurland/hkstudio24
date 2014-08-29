@@ -1,0 +1,43 @@
+.bg-n, .bg-n-hover:hover, .active .bg-n-active {
+  background-color: transparent;
+}
+
+.c-1, .c-1-hover:hover, .active .c-1-active {
+  color: $shade1;
+}
+
+.bg-1, .bg-1-hover:hover, .active .bg-1-active {
+  background-color: $shade1;
+}
+
+.c-2, .c-2-hover:hover, .active .c-2-active {
+  color: $shade2;
+}
+
+.bg-2, .bg-2-hover:hover, .active .bg-2-active {
+  background-color: $shade2;
+}
+
+.c-3, .c-3-hover:hover, .active .c-3-active {
+  color: $shade3;
+}
+
+.bg-3, .bg-3-hover:hover, .active .bg-3-active {
+  background-color: $shade3;
+}
+
+.c-4, .c-4-hover:hover, .active .c-4-active {
+  color: $shade4;
+}
+
+.bg-4, .bg-4-hover:hover, .active .bg-4-active {
+  background-color: $shade4;
+}
+
+.c-accent, .c-accent-hover:hover, .active .c-accent-active {
+  color: $accent;
+}
+
+.bg-accent, .bg-accent-hover:hover, .active .bg-accent-active {
+  background-color: $accent;
+}

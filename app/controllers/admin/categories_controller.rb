@@ -1,4 +1,6 @@
 class Admin::CategoriesController < AdminController
+  before_action :navigation
+
   def index
     @categories = Category.order(:name)
   end
@@ -47,5 +49,9 @@ class Admin::CategoriesController < AdminController
 
   def category_params
     params.require(:category).permit(:name, tags_attributes: [:id, :name])
+  end
+
+  def navigation
+    @admin_navigation = "categories"
   end
 end

@@ -1,4 +1,6 @@
 class Admin::ProductsController < AdminController
+  before_action :navigation
+
   def index
     @products = Product.order(:name)
   end
@@ -52,5 +54,9 @@ class Admin::ProductsController < AdminController
 
   def product_params
     params.require(:product).permit(:name, :dimensions, :cost_in_cents, photo_attributes: [:id, :attachment], tag_ids: [])
+  end
+
+  def navigation
+    @admin_navigation = "products"
   end
 end

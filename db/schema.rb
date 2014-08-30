@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823224313) do
+ActiveRecord::Schema.define(version: 20140830021611) do
 
   create_table "assets", force: true do |t|
     t.string   "type"
@@ -55,6 +55,25 @@ ActiveRecord::Schema.define(version: 20140823224313) do
   create_table "products_tags", force: true do |t|
     t.integer "product_id"
     t.integer "tag_id"
+  end
+
+  create_table "rental_items", force: true do |t|
+    t.integer  "request_id"
+    t.integer  "product_id"
+    t.integer  "price_in_cents"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rentals", force: true do |t|
+    t.string   "status"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tags", force: true do |t|

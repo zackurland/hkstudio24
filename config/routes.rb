@@ -3,6 +3,13 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products
     resources :categories
+    resources :rentals do 
+      collection do
+        get :pending
+        get :approved
+        get :rejected
+      end
+    end
   end
 
   resources :products

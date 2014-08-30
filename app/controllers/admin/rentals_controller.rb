@@ -1,4 +1,5 @@
 class Admin::RentalsController < AdminController
+	before_action :navigation
 
 	def index
 		@pendingRentals = Rental.where(status: "pending").count
@@ -16,6 +17,12 @@ class Admin::RentalsController < AdminController
 
 	def rejected
 		@rejectedRentals = Rental.where(status: "rejected")
+	end
+
+	private
+
+	def navigation
+		@admin_navigation = "rentals"
 	end
 
 end

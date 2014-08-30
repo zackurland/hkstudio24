@@ -30,15 +30,19 @@
                 </div>
               <% end %>
             </div>
+            <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "rentals" %>">
+              <%= link_to admin_rentals_path do %>
+                <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
+                  Requests
+                </div>
+              <% end %>
+            </div>
             <div class="bss bwts-plus bc-2">
               <%= link_to destroy_user_session_path, method: :delete do %>
                 <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
                   Logout
                 </div>
               <% end %>
-            </div>
-            <div class="mtxxxs-plus">
-              <%= link_to "Requests", admin_rentals_path %>
             </div>
           </div>
         </div>

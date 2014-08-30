@@ -1,12 +1,25 @@
 <div class="row nmhxs">
-  <div class="col-lg-8">
-    <%= link_to "New Product", new_admin_product_path, class: "c-red" %>
-    <table class="full-width">
+  <div class="col-lg-8 phxs">
+    <%= link_to new_admin_product_path do %>
+      <table>
+        <tr>
+          <td>
+            <div class="btn btn-primary pan dam bg-accent">
+              <i class="fa fa-plus c-4 fsl lhm"></i>
+            </div>
+          </td>
+          <td class="plxs c-1 fss">
+            Add Product
+          </td>
+        </tr>
+      </table>
+    <% end %>
+    <table class="mtm full-width">
       <tbody>
         <% @products.each_with_index do |product, index| %>
           <tr class="pas<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
             <td class="plxs prxxxs pvxs fwl full-width">
-              <%= product.name %>
+              <%= link_to product.name, admin_product_path(product), class: "c-accent-hover" %>
             </td>
             <td class="phxxxs pvxs">
               <%= link_to edit_admin_product_path(product), class: "btn btn-primary" do %>

@@ -8,19 +8,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="relative absolute top left fill zxs">
+  <div class="absolute top left fill zxs">
     <div class="row mhn">
-      <div class="col-sm-3 phn absolute top bottom bg-14 bss bwrs bc-2 hidden-xs">
+      <div class="col-sm-3 phn absolute top bottom bg-1 hidden-xs" style="overflow-y: auto">
         <div class="absolute top left right dvl">
-          <div class="dvl lhl bg-1 c-4 fsl text-center">
+          <div class="dvl lhl c-4 fsl text-center">
             HK STUDIO
           </div>
-          <div class="pas fss">
-            <div class="mtxxxs-plus">
-              <%= link_to "Products", admin_products_path %>
+          <div class="c-4 fss bss bwvs bc-2">
+            <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "products" %>">
+              <%= link_to admin_products_path do %>
+                <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
+                  Products
+                </div>
+              <% end %>
             </div>
-            <div class="mtxxxs-plus">
-              <%= link_to "Categories", admin_categories_path %>
+            <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "categories" %>">
+              <%= link_to admin_categories_path do %>
+                <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
+                  Categories
+                </div>
+              <% end %>
+            </div>
+            <div class="bss bwts-plus bc-2">
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
+                  Logout
+                </div>
+              <% end %>
             </div>
             <div class="mtxxxs-plus">
               <%= link_to "Requests", admin_rentals_path %>

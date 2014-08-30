@@ -1,0 +1,31 @@
+<div class="fsl text-center">
+  SIGN IN
+</div>
+<div class="ptm mtxs bss bwtm bc-3">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div>
+      <div>
+        <%= f.label :email, class: "fss" %>
+      </div>
+      <div>
+        <%= f.email_field :email, placeholder: "Email", autofocus: true, class: "paxs full-width bss bwas bc-2" %>
+      </div>
+    </div>
+    <div class="mtxs">
+      <div>
+        <%= f.label :password, class: "fss" %>
+      </div>
+      <div>
+        <%= f.password_field :password, placeholder: "Password", autocomplete: "off", class: "paxs full-width bss bwas bc-2" %>
+      </div>
+    </div>
+    <% if devise_mapping.rememberable? -%>
+      <div class="mtxs fsxs">
+        <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+      </div>
+    <% end -%>
+    <div class="mtxs">
+      <%= f.submit "Sign in", class: "btn btn-primary full-width" %>
+    </div>
+  <% end %>
+</div>

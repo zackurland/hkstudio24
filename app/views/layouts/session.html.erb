@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hkstudio - Admin Panel</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container phxs">
+    <div class="row nmhxs">
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 phxs">
+        <div class="mtxxl">
+          <div class="pam bg-4 c-1 bras bss bwbm bc-2">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

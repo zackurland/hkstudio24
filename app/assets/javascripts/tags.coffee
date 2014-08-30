@@ -11,3 +11,10 @@ $(document).ready ->
 
   $("body").on "click", ".js-admin-tag-remove", ->
 
+  $("body").on "click", ".js-category-tag", ->
+    $(@).toggleClass("active")
+    tag_ids = []
+    $(".js-category-tag.active").each ->
+      tag_ids.push($(@).data("id"))
+    window.location = "#{location.protocol}//#{location.host}#{location.pathname}?tag_ids=#{tag_ids.join(",")}"
+

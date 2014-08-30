@@ -1,0 +1,35 @@
+<div class="fsl text-center">
+  SIGN UP
+</div>
+<div class="ptm mtxs bss bwtm bc-3">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="">
+      <div>
+        <%= f.label :email, class: "fss" %>
+      </div>
+      <div>
+        <%= f.email_field :email, placeholder: "Email", autofocus: true, class: "paxs full-width bss bwas bc-2" %>
+      </div>
+    </div>
+    <div class="mtxs">
+      <div>
+        <%= f.label :password, class: "fss" %>
+      </div>
+      <div>
+        <%= f.password_field :password, placeholder: "Password", autocomplete: "off", class: "paxs full-width bss bwas bc-2" %>
+      </div>
+    </div>
+    <div class="mtxs">
+      <div>
+        <%= f.label :password_confirmation, class: "fss" %>
+      </div>
+      <div>
+        <%= f.password_field :password_confirmation, placeholder: "Password Confirmation", autocomplete: "off", class: "paxs full-width bss bwas bc-2" %>
+      </div>
+    </div>
+    <div class="mtm">
+      <%= f.submit "Sign up", class: "btn btn-primary full-width" %>
+    </div>
+  <% end %>
+</div>

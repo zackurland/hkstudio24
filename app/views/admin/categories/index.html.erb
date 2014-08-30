@@ -1,12 +1,25 @@
 <div class="row nmhxs">
-  <div class="col-lg-8">
-    <%= link_to "New Category", new_admin_category_path, class: "c-red" %>
-    <table class="full-width">
+  <div class="col-lg-8 phxs">
+    <%= link_to new_admin_category_path do %>
+      <table>
+        <tr>
+          <td>
+            <div class="btn btn-primary pan dam bg-accent">
+              <i class="fa fa-plus c-4 fsl lhm"></i>
+            </div>
+          </td>
+          <td class="phxs c-1 fss">
+            Add Category
+          </td>
+        </tr>
+      </table>
+    <% end %>
+    <table class="mtm full-width">
       <tbody>
         <% @categories.each_with_index do |category, index| %>
           <tr class="pas<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
             <td class="plxs prxxxs pvxs fwl full-width">
-              <%= category.name %>
+              <%= link_to category.name, admin_category_path(category) %>
             </td>
             <td class="phxxxs pvxs">
               <%= link_to edit_admin_category_path(category), class: "btn btn-primary" do %>

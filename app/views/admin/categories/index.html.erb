@@ -6,7 +6,7 @@
         <% @categories.each_with_index do |category, index| %>
           <tr class="pas<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
             <td class="plxs prxxxs pvxs fwl full-width">
-              <%= category.name %>
+              <%= link_to category.name, admin_category_path(category) %>
             </td>
             <td class="phxxxs pvxs">
               <%= link_to edit_admin_category_path(category), class: "btn btn-primary" do %>

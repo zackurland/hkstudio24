@@ -1,9 +1,13 @@
 class ProductsController < ApplicationController
   def index
-    if params[:tag_ids].present?
-      @products = Product.joins(:tags).where(tags: {id: params[:tag_ids]})
-    else
-      @products = Product.all
+    @products = Product.joins(:tags)
+    @tag_ids = []
+    if params[:filters].present?
+      params[:filters].each do |key, value|
+        @tag_ids += value
+        @products = @products & Product.joins(:tags).where(tags: {id: value})
+      end
     end
+    @products = @products.uniq
   end
 end

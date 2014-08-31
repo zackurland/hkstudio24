@@ -58,7 +58,7 @@
               <%= category.name %>
             </div>
             <% category.tags.each do |tag| %>
-              <div id="tag-<%= tag.id %>" class="mtxxxs pointer no-select js-category-tag<%= " active" if params[:tag_ids].present? && params[:tag_ids].include?(tag.id.to_s) %>" data-id="<%= tag.id %>">
+              <div id="tag-<%= tag.id %>" class="mtxxxs pointer no-select js-category-tag<%= " active" if @tag_ids.present? && @tag_ids.include?(tag.id.to_s) %>" data-id="<%= tag.id %>" data-category-id="<%= category.id %>">
                 <table>
                   <tr>
                     <td>

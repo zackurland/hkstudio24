@@ -13,8 +13,13 @@ $(document).ready ->
 
   $("body").on "click", ".js-category-tag", ->
     $(@).toggleClass("active")
-    tag_ids = []
+    categories = {}
     $(".js-category-tag.active").each ->
-      tag_ids.push($(@).data("id"))
-    window.location = "#{location.protocol}//#{location.host}#{location.pathname}?tag_ids=#{tag_ids.join(",")}"
+      category_id = $(@).data("category-id")
+      unless categories[category_id]
+        categories[category_id] = []
+      categories[category_id].push($(@).data("id"))
+    filters = {}
+    filters["filters"] = categories
+    window.location = "#{location.protocol}//#{location.host}#{location.pathname}?#{$.param(filters)}"
 

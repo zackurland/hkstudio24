@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products
     resources :categories
-    resources :rentals do 
+    resources :rentals do
       collection do
         get :pending
         get :approved
@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   end
 
   get "/cart", to: "carts#show"
+  patch "/cart", to: "carts#update"
+  put "/cart", to: "carts#update"
+  get "/cart/check_availabilities", to: "carts#check_availabilities"
 
   root to: "products#index"
 end

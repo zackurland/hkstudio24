@@ -86,3 +86,7 @@
 .bc-accent, .active .bc-accent-active {
   border-color: $accent;
 }
+
+.bc-error, .active .bc-error-active {
+  border-color: $error;
+}

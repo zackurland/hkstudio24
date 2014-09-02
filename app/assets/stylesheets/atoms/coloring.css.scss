@@ -41,3 +41,11 @@
 .bg-accent, .bg-accent-hover:hover, .active .bg-accent-active {
   background-color: $accent;
 }
+
+.c-error, .c-error-hover:hover, .active .c-error-active {
+  color: $error;
+}
+
+.bg-error, .bg-error-hover:hover, .active .bg-error-active {
+  background-color: $error;
+}

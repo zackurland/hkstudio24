@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   def show
-    @items = current_cart.items.includes(:product)
+    @items = current_cart(true).items.includes(:product)
   end
 
   def update

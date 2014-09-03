@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.joins(:tags)
-    @products = Category.all
+    @categories = Category.all
     @tag_ids = []
     if params[:filters].present?
       params[:filters].each do |key, value|

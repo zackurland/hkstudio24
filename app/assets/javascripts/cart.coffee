@@ -57,6 +57,7 @@ $(document).ready ->
   $(".js-cart-rental-date-form").on "ajax:error", (event, xhr, status, error) =>
 
   $(".js-cart-checkout").click (e) ->
+    $link = $(@)
     $(".js-cart-item").removeClass("active")
     $("#cart-error").addClass("hide")
     e.preventDefault()
@@ -71,3 +72,5 @@ $(document).ready ->
           $("#cart-item-#{item.id}").addClass("active")
       if unavailable
         $("#cart-error").removeClass("hide")
+      else
+        window.location = $link.attr("href")

@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   patch "/cart", to: "carts#update"
   put "/cart", to: "carts#update"
   get "/cart/check_availabilities", to: "carts#check_availabilities"
+  get "/cart/checkout", to: "carts#checkout"
 
   root to: "products#index"
 end

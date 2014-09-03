@@ -1,33 +1,88 @@
-<div class="row nmhxs js-masonry">
-  <% @products.each do |product| %>
-    <div class="col-sm-6 col-md-3 phxs mtm js-masonry-item">
-      <div id="product-<%= product.id %>" class="js-product-display <%= "active" if current_cart.has_product?(product) %>" data-id="<%= product.id %>" data-active="<%= current_cart.has_product?(product) %>">
-        <div class="product-display bram no-overflow no-select">
-          <%= link_to product.photo.url(:original), class: "js-lightbox" do %>
-            <%= image_tag product.photo.url(:medium), class: "img-responsive" %>
+<div class="row pbxxl mhn mtxs">
+  <div class="col-sm-4 col-md-3 phn mtm">
+    <div class="pal bg-4 brrm">
+      <div class="c-accent fsxs text-center">
+        <%= link_to "/cart" do %>
+          <table class="mha">
+            <tr>
+              <td>
+                View Your Cart
+              </td>
+              <td class="plxs">
+                (<span class="js-cart-items-count"><%= current_cart.items.count %></span>)
+              </td>
+              <td class="plxs">
+                <i class="fa fa-shopping-cart fsm"></i>
+              </td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+      <hr class="bss bwtm bc-3"/>
+      <div class="c-2 fsxs">
+        Filter By:
+      </div>
+      <% Category.all.each do |category| %>
+        <div class="ptxs mtxs-plus fsxxs bss bwtm-plus bc-3">
+          <div class="fwl">
+            <%= category.name %>
+          </div>
+          <% category.tags.each do |tag| %>
+            <div id="tag-<%= tag.id %>" class="mtxxxs pointer no-select js-category-tag<%= " active" if @tag_ids.present? && @tag_ids.include?(tag.id.to_s) %>" data-id="<%= tag.id %>" data-category-id="<%= category.id %>">
+              <table>
+                <tr>
+                  <td>
+                    <div class="daxxs bg-3 bg-accent-active braxxs"></div>
+                  </td>
+                  <td class="plxxxs">
+                    <%= tag.name %>
+                  </td>
+                </tr>
+              </table>
+            </div>
           <% end %>
-          <div class="paxs bg-4 bss bwts bc-3">
-            <div class="c-1 fwl">
-              <%= product.name %>
-            </div>
-            <div class="nmlxs clearfix">
-              <% product.tags.each do |tag| %>
-                <div class="mlxs pull-left">
-                  <%= tag.name %>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          <div class="paxs bg-4 bg-accent-active c-accent c-4-active text-center bss bwts bc-3 bc-accent-active pointer js-toggle js-cart-item-add" data-toggle-target="#product-<%= product.id %>" data-toggle-class="active">
-            <div class="hide-active js-product-display-text">
-              <i class="fa fa-shopping-cart"></i> Add to Cart
-            </div>
-            <div class="show-active js-product-display-text">
-              <i class="fa fa-shopping-cart"></i> Remove from Cart
-            </div>
-          </div>
         </div>
+      <% end %>
+    </div>
+    <div class="mtxs text-center">
+      <%= link_to "Admin Panel", admin_products_path, class: "c-2 c-1-hover fsxxs" %>
+    </div>
+  </div>
+  <div class="col-sm-8 col-md-9 phn">
+    <div class="phm">
+      <div class="row nmhxs js-masonry">
+        <% @products.each do |product| %>
+          <div class="col-sm-6 col-md-3 phxs mtm js-masonry-item">
+            <div id="product-<%= product.id %>" class="js-product-display <%= "active" if current_cart.has_product?(product) %>" data-id="<%= product.id %>" data-active="<%= current_cart.has_product?(product) %>">
+              <div class="product-display bram no-overflow no-select">
+                <%= link_to product.photo.url(:original), class: "js-lightbox" do %>
+                  <%= image_tag product.photo.url(:medium), class: "img-responsive" %>
+                <% end %>
+                <div class="paxs bg-4 bss bwts bc-3">
+                  <div class="c-1 fwl">
+                    <%= product.name %>
+                  </div>
+                  <div class="nmlxs clearfix">
+                    <% product.tags.each do |tag| %>
+                      <div class="mlxs pull-left">
+                        <%= tag.name %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="paxs bg-4 bg-accent-active c-accent c-4-active text-center bss bwts bc-3 bc-accent-active pointer js-toggle js-cart-item-add" data-toggle-target="#product-<%= product.id %>" data-toggle-class="active">
+                  <div class="hide-active js-product-display-text">
+                    <i class="fa fa-shopping-cart"></i> Add to Cart
+                  </div>
+                  <div class="show-active js-product-display-text">
+                    <i class="fa fa-shopping-cart"></i> Remove from Cart
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>

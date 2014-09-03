@@ -11,6 +11,10 @@ class CartsController < ApplicationController
     end
   end
 
+  def checkout
+    @items = current_cart.items.includes(:product)
+  end
+
   def check_availabilities
     render json: { items: current_cart.items.map{|item| {id: item.id, product_id: item.product_id, available: item.available?} } }
   end

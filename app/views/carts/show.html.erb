@@ -1,89 +1,116 @@
-<div class="row nmhxs">
-  <div class="col-sm-4 phxs mtm">
-    <table class="full-width">
-      <tr>
-        <td>
-          <i class="fa fa-calendar c-accent fsm"></i>
-        </td>
-        <td class="plxxxs">
-          <%= form_for current_cart, html: { remote: true, class: "js-cart-rental-date-form" } do |f| %>
-            <input type="text" class="paxxs bss bwas bc-accent bras full-width js-datepicker js-cart-rental-date-form-datepicker" placeholder="Date" value="<%= current_cart.rental_start_date.strftime("%m/%d/%Y") if current_cart.rental_start_date.present? %>">
-            <%= f.hidden_field :rental_start_date %>
-          <% end %>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="col-sm-4 phxs mtm">
-    <table class="full-width">
-      <tr>
-        <td>
-          <i class="fa fa-calendar c-accent fsm"></i>
-        </td>
-        <td class="plxxxs">
-          <%= form_for current_cart, html: { remote: true, class: "js-cart-rental-date-form" } do |f| %>
-            <input type="text" class="paxxs bss bwas bc-accent bras full-width js-datepicker js-cart-rental-date-form-datepicker" placeholder="Date" value="<%= current_cart.rental_end_date.strftime("%m/%d/%Y") if current_cart.rental_end_date.present? %>">
-            <%= f.hidden_field :rental_end_date %>
-          <% end %>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="col-sm-4 phxs mtm">
-    <%= link_to "Proceed to Checkout", "#", class: "btn btn-primary bras full-width js-cart-checkout" %>
-  </div>
-</div>
-<table class="mtl">
-  <tr>
-    <td>
-      <i class="fa fa-shopping-cart fsm c-accent"></i>
-    </td>
-    <td class="plxs c-1">
-      <span class="fwl js-cart-items-count"><%= @items.count %></span> <span class="c-2">Items in Your Cart</span>
-    </td>
-  </tr>
-</table>
-<div id="cart-error" class="mtm pvxxs bg-error c-4 fsxs bras text-center hide">
-  <i class="fa fa-ban"></i> Some items are unavailable during the selected date range.
-</div>
-<% @items.each do |item| %>
-  <div id="cart-item-<%= item.id %>" class="bss bwts-plus bc-2 js-cart-item" data-product-id="<%= item.product.id %>">
-    <table class="row nmhs full-width">
-      <tr>
-        <td class="col-xs-4 col-md-2 pvs phs">
-          <div class="relative">
-            <%= link_to item.product.photo.url(:original), class: "js-lightbox" do %>
-              <%= image_tag item.product.photo.url(:thumbnail), class: "relative img-responsive bram zxs fade-l-active" %>
-            <% end %>
-            <div class="absolute fill zs show-active">
-              <table class="full">
-                <tr>
-                  <td class="text-center">
-                    <i class="fa fa-ban fsxxl c-error"></i>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </td>
-        <td class="col-xs-6 col-md-8 pvs phs fsxs fwl">
-          <%= item.product.name %>
-        </td>
-        <td class="col-xs-2 col-md-2 pvs phs text-right">
-          <table class="pointer pull-right js-cart-item-remove">
+<div class="row pbxxl mhn mtxs">
+  <div class="col-sm-4 col-md-3 phn mtm">
+    <div class="pal bg-4 brrm">
+      <div class="c-accent fsxs text-center">
+        <%= link_to products_path do %>
+          <table>
             <tr>
               <td>
-                <div class="daxs bg-accent lhxs fsxxxs text-center circle">
-                  <i class="fa fa-times c-4"></i>
-                </div>
+                <i class="fa fa-caret-left fsm"></i>
               </td>
-              <td class="plxxxs">
-                <span class="c-accent">Remove</span>
+              <td class="plxs">
+                Back to Jewelry Feed
               </td>
             </tr>
           </table>
-        </td>
-      </tr>
-    </table>
+        <% end %>
+      </div>
+    </div>
+    <div class="mtxs text-center">
+      <%= link_to "Admin Panel", admin_products_path, class: "c-2 c-1-hover fsxxs" %>
+    </div>
   </div>
-<% end %>
+  <div class="col-sm-8 col-md-9 phn">
+    <div class="phm">
+      <div class="row nmhxs">
+        <div class="col-sm-4 phxs mtm">
+          <table class="full-width">
+            <tr>
+              <td>
+                <i class="fa fa-calendar c-accent fsm"></i>
+              </td>
+              <td class="plxxxs">
+                <%= form_for current_cart, html: { remote: true, class: "js-cart-rental-date-form" } do |f| %>
+                  <input type="text" class="paxxs bss bwas bc-accent bras full-width js-datepicker js-cart-rental-date-form-datepicker" placeholder="Date" value="<%= current_cart.rental_start_date.strftime("%m/%d/%Y") if current_cart.rental_start_date.present? %>">
+                  <%= f.hidden_field :rental_start_date %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-4 phxs mtm">
+          <table class="full-width">
+            <tr>
+              <td>
+                <i class="fa fa-calendar c-accent fsm"></i>
+              </td>
+              <td class="plxxxs">
+                <%= form_for current_cart, html: { remote: true, class: "js-cart-rental-date-form" } do |f| %>
+                  <input type="text" class="paxxs bss bwas bc-accent bras full-width js-datepicker js-cart-rental-date-form-datepicker" placeholder="Date" value="<%= current_cart.rental_end_date.strftime("%m/%d/%Y") if current_cart.rental_end_date.present? %>">
+                  <%= f.hidden_field :rental_end_date %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-4 phxs mtm">
+          <%= link_to "Proceed to Checkout", cart_checkout_path, class: "btn btn-primary bras full-width js-cart-checkout" %>
+        </div>
+      </div>
+      <table class="mtl">
+        <tr>
+          <td>
+            <i class="fa fa-shopping-cart fsm c-accent"></i>
+          </td>
+          <td class="plxs c-1">
+            <span class="fwl js-cart-items-count"><%= @items.count %></span> <span class="c-2">Items in Your Cart</span>
+          </td>
+        </tr>
+      </table>
+      <div id="cart-error" class="mtm pvxxs bg-error c-4 fsxs bras text-center hide">
+        <i class="fa fa-ban"></i> Some items are unavailable during the selected date range.
+      </div>
+      <% @items.each do |item| %>
+        <div id="cart-item-<%= item.id %>" class="bss bwts-plus bc-2 js-cart-item" data-product-id="<%= item.product.id %>">
+          <table class="row nmhs full-width">
+            <tr>
+              <td class="col-xs-4 col-md-2 pvs phs">
+                <div class="relative">
+                  <%= link_to item.product.photo.url(:original), class: "js-lightbox" do %>
+                    <%= image_tag item.product.photo.url(:thumbnail), class: "relative img-responsive bram zxs fade-l-active" %>
+                  <% end %>
+                  <div class="absolute fill zs show-active">
+                    <table class="full">
+                      <tr>
+                        <td class="text-center">
+                          <i class="fa fa-ban fsxxl c-error"></i>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </td>
+              <td class="col-xs-6 col-md-8 pvs phs fsxs fwl">
+                <%= item.product.name %>
+              </td>
+              <td class="col-xs-2 col-md-2 pvs phs text-right">
+                <table class="pointer pull-right js-cart-item-remove">
+                  <tr>
+                    <td>
+                      <div class="daxs bg-accent lhxs fsxxxs text-center circle">
+                        <i class="fa fa-times c-4"></i>
+                      </div>
+                    </td>
+                    <td class="plxxxs">
+                      <span class="c-accent">Remove</span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

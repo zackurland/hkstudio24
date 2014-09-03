@@ -1,0 +1,60 @@
+<div class="row pbxxl mhn mtxs">
+  <div class="col-sm-4 col-md-3 phn mtm">
+    <div class="pal bg-4 brrm">
+      <div class="c-accent fsxs">
+        <%= link_to products_path do %>
+          <table>
+            <tr>
+              <td>
+                <i class="fa fa-caret-left fsm"></i>
+              </td>
+              <td class="plxs">
+                Back to Jewelry Feed
+              </td>
+            </tr>
+          </table>
+        <% end %>
+        <%= link_to cart_path do %>
+          <table>
+            <tr>
+              <td>
+                <i class="fa fa-caret-left fsm"></i>
+              </td>
+              <td class="plxs">
+                Back to Cart
+              </td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
+    </div>
+    <div class="mtxs text-center">
+      <%= link_to "Admin Panel", admin_products_path, class: "c-2 c-1-hover fsxxs" %>
+    </div>
+  </div>
+  <div class="col-sm-8 col-md-9 phn">
+    <div class="phm">
+      <div class="row nmhxs">
+        <div class="col-md-6 phxs mtm">
+          CHECKOUT FORM
+        </div>
+        <div class="col-md-6 phxs mtm">
+          <% @items.each do |item| %>
+            <div class="ptxs-plus mtxs-plus bss bwts-plus bc-2">
+              <table class="row nmhxs">
+                <tr>
+                  <td class="col-xs-3 col-sm-2 phxs">
+                    <%= image_tag item.product.photo.url(:thumbnail), class: "img-responsive bras" %>
+                  </td>
+                  <td class="col-xs-9 col-sm-10 phxs fsxxs fwl">
+                    <%= item.product.name %>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

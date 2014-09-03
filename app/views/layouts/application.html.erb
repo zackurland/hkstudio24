@@ -29,61 +29,6 @@
       </table>
     </div>
   </div>
-  <div class="row pbxxl mhn mtxs">
-    <div class="col-sm-4 col-md-3 phn mtm">
-      <div class="pal bg-4 brrm">
-        <div class="c-accent fsxs text-center">
-          <%= link_to "/cart" do %>
-            <table class="mha">
-              <tr>
-                <td>
-                  View Your Cart
-                </td>
-                <td class="plxs">
-                  (<span class="js-cart-items-count"><%= current_cart.items.count %></span>)
-                </td>
-                <td class="plxs">
-                  <i class="fa fa-shopping-cart fsm"></i>
-                </td>
-              </tr>
-            </table>
-          <% end %>
-        </div>
-        <hr class="bss bwtm bc-3"/>
-        <div class="c-2 fsxs">
-          Filter By:
-        </div>
-        <% Category.all.each do |category| %>
-          <div class="ptxs mtxs-plus fsxxs bss bwtm-plus bc-3">
-            <div class="fwl">
-              <%= category.name %>
-            </div>
-            <% category.tags.each do |tag| %>
-              <div id="tag-<%= tag.id %>" class="mtxxxs pointer no-select js-category-tag<%= " active" if @tag_ids.present? && @tag_ids.include?(tag.id.to_s) %>" data-id="<%= tag.id %>" data-category-id="<%= category.id %>">
-                <table>
-                  <tr>
-                    <td>
-                      <div class="daxxs bg-3 bg-accent-active braxxs"></div>
-                    </td>
-                    <td class="plxxxs">
-                      <%= tag.name %>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <div class="mtxs text-center">
-        <%= link_to "Admin Panel", admin_products_path, class: "c-2 c-1-hover fsxxs" %>
-      </div>
-    </div>
-    <div class="col-sm-8 col-md-9 phn">
-      <div class="phm">
-        <%= yield %>
-      </div>
-    </div>
-  </div>
+  <%= yield %>
 </body>
 </html>

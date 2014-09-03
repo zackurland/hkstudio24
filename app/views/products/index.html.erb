@@ -18,30 +18,32 @@
           </table>
         <% end %>
       </div>
-      <hr class="bss bwtm bc-3"/>
-      <div class="c-2 fsxs">
-        Filter By:
-      </div>
-      <% Category.all.each do |category| %>
-        <div class="ptxs mtxs-plus fsxxs bss bwtm-plus bc-3">
-          <div class="fwl">
-            <%= category.name %>
-          </div>
-          <% category.tags.each do |tag| %>
-            <div id="tag-<%= tag.id %>" class="mtxxxs pointer no-select js-category-tag<%= " active" if @tag_ids.present? && @tag_ids.include?(tag.id.to_s) %>" data-id="<%= tag.id %>" data-category-id="<%= category.id %>">
-              <table>
-                <tr>
-                  <td>
-                    <div class="daxxs bg-3 bg-accent-active braxxs"></div>
-                  </td>
-                  <td class="plxxxs">
-                    <%= tag.name %>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          <% end %>
+      <% if @categories.any? %>
+        <hr class="bss bwtm bc-3"/>
+        <div class="c-2 fsxs">
+          Filter By:
         </div>
+        <% @categories.each do |category| %>
+          <div class="ptxs mtxs-plus fsxxs bss bwtm-plus bc-3">
+            <div class="fwl">
+              <%= category.name %>
+            </div>
+            <% category.tags.each do |tag| %>
+              <div id="tag-<%= tag.id %>" class="mtxxxs pointer no-select js-category-tag<%= " active" if @tag_ids.present? && @tag_ids.include?(tag.id.to_s) %>" data-id="<%= tag.id %>" data-category-id="<%= category.id %>">
+                <table>
+                  <tr>
+                    <td>
+                      <div class="daxxs bg-3 bg-accent-active braxxs"></div>
+                    </td>
+                    <td class="plxxxs">
+                      <%= tag.name %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div class="mtxs text-center">

@@ -53,7 +53,7 @@ class Admin::ProductsController < AdminController
   private
 
   def product_params
-    params.require(:product).permit(:name, :dimensions, :cost_in_cents, photo_attributes: [:id, :attachment], tag_ids: [])
+    params.require(:product).permit(:name, :dimensions, :price, photo_attributes: [:id, :attachment], tag_ids: [])
   end
 
   def navigation

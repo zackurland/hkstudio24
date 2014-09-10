@@ -2,24 +2,46 @@ class Admin::RentalsController < AdminController
 	before_action :navigation
 
 	def index
-		@pendingRentals = Rental.where(status: "pending").count
-		@approvedRentals = Rental.where(status: "approved").count
-		@rejectedRentals = Rental.where(status: "rejected").count
+		@pending_rentals = Rental.where(status: "pending").count
+		@approved_rentals = Rental.where(status: "approved").count
+		@rejected_rentals = Rental.where(status: "rejected").count
+	end
+
+	def show
+		@rental = Rental.find(params[:id])
+	end
+
+	def edit
+		@rental = Rental.find(params[:id])
+	end
+
+	def update
+		@rental = Rental.find(params[:id])
+
+		if @rental.update_attributes(rental_params)
+			redirect_to admin_rental_path(@rental)
+		else
+			render :show
+		end
 	end
 
 	def pending
-		@pendingRentals = Rental.where(status: "pending")
+		@pending_rentals = Rental.where(status: "pending")
 	end
 
 	def approved
-		@approvedRentals = Rental.where(status: "approved")
+		@approved_rentals = Rental.where(status: "approved")
 	end
 
 	def rejected
-		@rejectedRentals = Rental.where(status: "rejected")
+		@rejected_rentals = Rental.where(status: "rejected")
 	end
 
 	private
+
+	def rental_params
+		params.require(:rental).permit(:start_date, :end_date, :status, items_attributes: [:id, :price])
+	end
 
 	def navigation
 		@admin_navigation = "rentals"

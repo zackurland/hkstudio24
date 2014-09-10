@@ -1,0 +1,116 @@
+<div class="row nmhxs">
+  <div class="col-lg-8 phxs">
+    <div class="clearfix">
+      <div class="pull-left fsl">
+        Request #<%= @rental.id %>
+      </div>
+      <div class="pull-right">
+        <% if @rental.status == "pending" %>
+          <%= link_to "Approve", edit_admin_rental_path, class: "btn btn-success bras" %>
+        <% elsif @rental.status == "approved" %>
+          <%= link_to "Send Invoice", "#", class: "btn btn-success bras" %> <%= link_to "Reject", edit_admin_rental_path, class: "btn btn-danger bras" %> <%= link_to "Edit", edit_admin_rental_path, class: "btn btn-primary bras" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="mts">
+      <div class="fss">
+        Status: <span class="<%= @rental.status == "rejected" ? "c-red" : "c-green" %>"><%= @rental.status %></span>
+      </div>
+    </div>
+    <div class="mts">
+      <div class="fsl">
+        <%= @rental.production_company %>
+      </div>
+      <div>
+        <%= @rental.production_name %>
+      </div>
+      <div>
+        <%= @rental.start_date.strftime("%m/%d/%y") %> &mdash; <%= @rental.end_date.strftime("%m/%d/%y") %>
+      </div>
+    </div>
+    <div class="mtm">
+      <div class="fsl">
+        Billing Information
+      </div>
+      <div>
+        <%= @rental.billing_name %>
+      </div>
+      <div>
+        <%= @rental.billing_address %>
+      </div>
+      <div>
+        <%= @rental.billing_address_2 %>
+      </div>
+      <div>
+        <%= @rental.billing_city %>, <%= @rental.billing_state %> <%= @rental.billing_zip_code %>
+      </div>
+      <div>
+        <%= @rental.billing_country %>
+      </div>
+    </div>
+    <div class="mtm">
+      <div class="fsl">
+        Designer Information
+      </div>
+      <div>
+        <%= @rental.designer_name %>
+      </div>
+      <div>
+        <%= @rental.designer_email %>
+      </div>
+      <div>
+        <%= @rental.designer_phone_number %>
+      </div>
+    </div>
+    <% if !@rental.filled_out_by_designer? %>
+      <div class="mtm">
+        <div class="fsl">
+          Request By
+        </div>
+        <div>
+          <%= @rental.filled_out_name %>
+        </div>
+        <div>
+          <%= @rental.filled_out_email %>
+        </div>
+        <div>
+          <%= @rental.filled_out_phone_number %>
+        </div>
+      </div>
+    <% end %>
+    <div class="mtm">
+      <div class="fsl">
+        Products
+      </div>
+      <table class="row nmhxs full-width">
+        <% @rental.items.includes(:product).each do |item| %>
+          <tr>
+            <td class="col-xs-3 phxs ptm">
+              <%= image_tag item.product.photo.url(:thumbnail), class: "img-responsive bras" %>
+            </td>
+            <td class="col-xs-6 phxs ptm fsxs fwl">
+              <%= item.product.name %>
+            </td>
+            <td class="col-xs-3 phxs ptm">
+              <%= number_to_currency item.price %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td colspan="3" class="ptm">
+          </td>
+        </tr>
+        <tr class="bss bwts bc-2">
+          <td class="col-xs-3 phxs ptm">
+          </td>
+          <td class="col-xs-6 phxs ptm fsxs fwl">
+            Total
+          </td>
+          <td class="col-xs-3 phxs ptm">
+            <%= number_to_currency @rental.total %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

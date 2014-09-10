@@ -1,3 +1,59 @@
-pending.html.erb
-
-<%=@pendingRentals.count%>
+<div class="fsl">
+  Pending Rentals
+</div>
+<table class="mtl full-width">
+  <tr>
+    <th class="phxxxs c-1">
+      ID
+    </th>
+    <th class="phxxxs c-1">
+      Requested
+    </th>
+    <th class="phxxxs c-1">
+      Requesting
+    </th>
+    <th class="phxxxs c-1">
+      Production Company
+    </th>
+    <th class="phxxxs c-1">
+      Contact Name
+    </th>
+    <th>
+    </th>
+  </tr>
+  <% @pending_rentals.each do |rental| %>
+    <tr>
+      <td class="phxxxs ptm">
+        <%= rental.id %>
+      </td>
+      <td class="phxxxs ptm">
+        <%= rental.created_at.strftime("%m/%d/%y") %>
+      </td>
+      <td class="phxxxs ptm">
+        <%= rental.start_date.strftime("%m/%d/%y") %> &mdash; <%= rental.end_date.strftime("%m/%d/%y") %>
+      </td>
+      <td class="phxxxs ptm">
+        <%= rental.production_company %>
+      </td>
+      <td class="phxxxs ptm">
+        <%= rental.contact_name %>
+      </td>
+      <td class="phxxxs ptm">
+        <div class="pull-right">
+          <%= link_to admin_rental_path(rental), class: "btn btn-primary" do %>
+            <table>
+              <tr>
+                <td class="prxxxs hidden-xs">
+                  View
+                </td>
+                <td>
+                  <i class="fa fa-chevron-right"></i>
+                </td>
+              </tr>
+            </table>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>

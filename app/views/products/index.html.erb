@@ -1,5 +1,5 @@
 <div class="row pbxxl mhn mtxs">
-  <div class="col-sm-4 col-md-3 phn mtm">
+  <div class="col-sm-4 col-md-3 col-lg-2 phn mtm">
     <div class="pal bg-4 brrm">
       <div class="c-accent fsxs text-center">
         <%= link_to "/cart" do %>
@@ -50,11 +50,11 @@
       <%= link_to "Admin Panel", admin_products_path, class: "c-2 c-1-hover fsxxs" %>
     </div>
   </div>
-  <div class="col-sm-8 col-md-9 phn">
-    <div class="phm">
-      <div class="row nmhxs js-masonry">
+  <div class="col-sm-8 col-md-9 col-lg-10 phn">
+    <div class="phl">
+      <div class="row nmhs js-masonry">
         <% @products.each do |product| %>
-          <div class="col-sm-6 col-md-3 phxs mtm js-masonry-item">
+          <div class="col-sm-6 col-md-3 phs mtm js-masonry-item">
             <div id="product-<%= product.id %>" class="js-product-display <%= "active" if current_cart.has_product?(product) %>" data-id="<%= product.id %>" data-active="<%= current_cart.has_product?(product) %>">
               <div class="product-display bram no-overflow no-select">
                 <%= link_to product.photo.url(:original), class: "js-lightbox" do %>

@@ -19,6 +19,7 @@ gem 'will_paginate', '~> 3.0'
 gem "paperclip"
 gem 'aws-sdk'
 gem 'devise'
+gem 'money-rails'
 
 group :development do
   gem 'mysql2'

@@ -1,0 +1,75 @@
+<% if @rental.errors.any? %>
+  <div class="mbxs">
+    <% @rental.errors.full_messages.each do |message| %>
+      <div class="mtxs-plus c-error">
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+<%= form_for [:admin, @rental] do |f| %>
+  <%= f.hidden_field :status, value: "approved" %>
+  <table>
+    <tr>
+      <td>
+        Start Date
+      </td>
+      <td class="pls">
+        <input type="text" class="phxxs dvs bss bwas bc-accent bras full-width js-datepicker" value="<%= @rental.start_date.strftime("%m/%d/%Y") %>"/>
+        <%= f.hidden_field :start_date %>
+      </td>
+    </tr>
+    <tr>
+      <td class="pts">
+        End Date
+      </td>
+      <td class="pts pls">
+        <input type="text" class="phxxs dvs bss bwas bc-accent bras full-width js-datepicker" value="<%= @rental.end_date.strftime("%m/%d/%Y") %>"/>
+        <%= f.hidden_field :end_date %>
+      </td>
+    </tr>
+  </table>
+  <table class="mts">
+    <tr>
+      <th class="pbxs">
+        Item
+      </th>
+      <th class="pbxs pls">
+      </th>
+      <th class="pbxs pls">
+        Price
+      </th>
+      <th class="pbxs pls">
+      </th>
+    </tr>
+    <%= f.fields_for :items do |items_fields| %>
+      <tr>
+        <td class="pbm">
+          <%= image_tag items_fields.object.product.photo.url(:thumbnail), class: "img-responsive bras" %>
+        </td>
+        <td class="pbm pls">
+          <%= items_fields.object.product.name %>
+        </td>
+        <td class="pbm pls">
+          <%= items_fields.text_field :price, value: items_fields.object.price || items_fields.object.product.price, class: "paxxs bras bss bwas bc-accent" %>
+        </td>
+        <td class="pbm pls">
+          <i class="fa fa-times c-accent fsm"></i>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>
+      </td>
+      <td class="pls fsm">
+        Total
+      </td>
+      <td class="pls fsm">
+        <%= number_to_currency @rental.total %>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </table>
+  <%= link_to "Reject", "/", class: "btn btn-danger bras" %> <%= f.submit "Approve", class: "btn btn-success bras" %>
+<% end %>

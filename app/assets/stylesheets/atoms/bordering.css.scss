@@ -90,3 +90,11 @@
 .bc-error, .active .bc-error-active {
   border-color: $error;
 }
+
+.bc-red, .active .bc-red-active {
+  border-color: $red;
+}
+
+.bc-green, .active .bc-green-active {
+  border-color: $green;
+}

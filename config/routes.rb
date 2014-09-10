@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :rentals
 
   get "/cart", to: "carts#show"
   patch "/cart", to: "carts#update"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902004005) do
+ActiveRecord::Schema.define(version: 20140910163118) do
 
   create_table "assets", force: true do |t|
     t.string   "type"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20140902004005) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "rental_start_date"
-    t.datetime "rental_end_date"
+    t.integer  "rental_duration_weeks"
   end
 
   create_table "categories", force: true do |t|
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20140902004005) do
   create_table "products", force: true do |t|
     t.string   "name"
     t.string   "dimensions"
-    t.integer  "cost_in_cents"
+    t.integer  "price_cents"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20140902004005) do
   create_table "rental_items", force: true do |t|
     t.integer  "rental_id"
     t.integer  "product_id"
-    t.integer  "price_in_cents"
+    t.integer  "price_cents"
     t.datetime "start_date"
     t.datetime "end_date"
     t.string   "status"
@@ -76,6 +76,22 @@ ActiveRecord::Schema.define(version: 20140902004005) do
     t.datetime "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "production_name"
+    t.string   "production_company"
+    t.string   "billing_name"
+    t.string   "billing_address"
+    t.string   "billing_address_2"
+    t.string   "billing_city"
+    t.string   "billing_state"
+    t.string   "billing_country"
+    t.string   "billing_zip_code"
+    t.string   "designer_name"
+    t.string   "designer_phone_number"
+    t.string   "designer_email"
+    t.string   "filled_out_name"
+    t.string   "filled_out_phone_number"
+    t.string   "filled_out_email"
+    t.boolean  "filled_out_by_designer"
   end
 
   create_table "tags", force: true do |t|

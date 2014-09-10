@@ -12,7 +12,7 @@ class CartsController < ApplicationController
   end
 
   def checkout
-    @items = current_cart.items.includes(:product)
+    @rental = Rental.new
   end
 
   def check_availabilities
@@ -22,6 +22,6 @@ class CartsController < ApplicationController
   private
 
   def cart_params
-    params.require(:cart).permit(:rental_start_date, :rental_end_date)
+    params.require(:cart).permit(:rental_start_date, :rental_duration_weeks)
   end
 end

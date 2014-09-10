@@ -1,5 +1,54 @@
-<%= link_to "Pending Requests(#{@pendingRentals})", pending_admin_rentals_path %>
-<br><br>
-<%= link_to "Approved Requests(#{@approvedRentals})", approved_admin_rentals_path %>
-<br><br>
-<%= link_to "Rejected Requests(#{@rejectedRentals})", rejected_admin_rentals_path %>
+<div class="row nmhxs">
+  <div class="col-lg-6 phxs">
+    <table class="full-width">
+      <tr>
+        <td class="c-1 fsm">
+          Pending Requests
+        </td>
+        <td class="pll">
+          <div class="pull-right">
+            <% if @pending_rentals > 0 %>
+              <%= link_to @pending_rentals, pending_admin_rentals_path, class: "btn btn-primary pan dam lhm fsm" %>
+            <% else %>
+              <div class="dam bg-2 c-4 lhm fsm text-center">
+                0
+              </div>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="ptl c-1 fsm">
+          Approved Requests
+        </td>
+        <td class="ptl pll">
+          <div class="pull-right">
+            <% if @approved_rentals > 0 %>
+              <%= link_to @approved_rentals, approved_admin_rentals_path, class: "btn btn-primary pan dam lhm fsm" %>
+            <% else %>
+              <div class="dam bg-2 c-4 lhm fsm text-center">
+                0
+              </div>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="ptl c-1 fsm">
+          Rejected Requests
+        </td>
+        <td class="ptl pll">
+          <div class="pull-right">
+            <% if @rejected_rentals > 0 %>
+              <%= link_to @rejected_rentals, rejected_admin_rentals_path, class: "btn btn-primary pan dam lhm fsm" %>
+            <% else %>
+              <div class="dam bg-2 c-4 lhm fsm text-center">
+                0
+              </div>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

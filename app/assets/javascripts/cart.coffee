@@ -48,7 +48,7 @@ $(document).ready ->
       $(".js-cart-items-count").html(parseInt($(".js-cart-items-count").html(), 10) + 1)
       console.log("remove unhurrah")
 
-  $(".js-cart-rental-date-form-datepicker").change ->
+  $(".js-cart-rental-date-form-input").change ->
     $(@).closest(".js-cart-rental-date-form").submit()
 
   $(".js-cart-rental-date-form").on "ajax:success", (event, data, status, xhr) =>

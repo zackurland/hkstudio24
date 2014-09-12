@@ -49,6 +49,9 @@
                 <% end %>
               <% end %>
               <%= form_for @rental do |f| %>
+                <%= f.hidden_field :status, value: "pending" %>
+                <%= f.hidden_field :start_date, value: current_cart.rental_start_date %>
+                <%= f.hidden_field :end_date, value: current_cart.rental_end_date %>
                 <div class="mtm c-1 fsl">
                   Production Information
                 </div>
@@ -71,6 +74,9 @@
                   <div class="col-sm-8 phs mtxxxs">
                     <%= f.text_field :production_company, class: "paxxs full-width bras bss bwas bc-accent" %>
                   </div>
+                </div>
+                <div class="mtm c-1 fsl">
+                  Billing Information
                 </div>
                 <div class="row nmhs mtxs">
                   <div class="col-sm-4 phs mtxxxs">

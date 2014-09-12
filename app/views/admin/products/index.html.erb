@@ -14,10 +14,10 @@
         </tr>
       </table>
     <% end %>
-    <table class="mtm full-width">
+    <table class="row nmhxs mtm full-width">
       <tbody>
         <% @products.each_with_index do |product, index| %>
-          <tr class="row pas<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
+          <tr class="<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
             <td class="col-xs-2 plxs pvxs">
               <%= image_tag product.photo.url(:thumbnail), class: "img-responsive" %>
             </td>

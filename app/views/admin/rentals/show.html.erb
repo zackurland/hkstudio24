@@ -8,7 +8,7 @@
         <% if @rental.status == "pending" %>
           <%= link_to "Approve", edit_admin_rental_path, class: "btn btn-success bras" %>
         <% elsif @rental.status == "approved" %>
-          <%= link_to "Send Invoice", "#", class: "btn btn-success bras" %> <%= link_to "Reject", edit_admin_rental_path, class: "btn btn-danger bras" %> <%= link_to "Edit", edit_admin_rental_path, class: "btn btn-primary bras" %>
+          <%= link_to "Send Invoice", send_invoice_admin_rental_path(@rental), class: "btn btn-success bras" %> <%= link_to "Reject", edit_admin_rental_path, class: "btn btn-danger bras" %> <%= link_to "Edit", edit_admin_rental_path, class: "btn btn-primary bras" %>
         <% end %>
       </div>
     </div>

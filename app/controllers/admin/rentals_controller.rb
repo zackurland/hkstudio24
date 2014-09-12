@@ -37,6 +37,12 @@ class Admin::RentalsController < AdminController
 		@rejected_rentals = Rental.where(status: "rejected")
 	end
 
+	def send_invoice
+		@rental = Rental.find(params[:id])
+		RentalMailer.invoice(@rental).deliver
+		redirect_to admin_rental_path(@rental)
+	end
+
 	private
 
 	def rental_params

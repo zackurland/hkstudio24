@@ -9,6 +9,9 @@ Rails.application.routes.draw do
         get :approved
         get :rejected
       end
+      member do
+        get :send_invoice
+      end
     end
   end
 

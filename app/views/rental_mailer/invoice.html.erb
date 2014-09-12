@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body style="font-family: Helvetica;">
+    <table border="1" cellpadding="1" cellspacing="0" style="width: 600px;">
+      <thead>
+        <tr>
+          <th style="text-align: center;">
+            Rental Invoice
+          </th>
+        </tr>
+      </thead>
+    </table>
+    <table border="1" cellpadding="1" cellspacing="0" style="width: 600px;margin-top: 20px;">
+      <tbody>
+        <tr>
+          <td>
+            <div style="font-size: 22px;">
+              HK STUDIO
+            </div>
+            <div>
+              1117 N. Formosa
+            </div>
+            <div>
+              W. Hollywood, Ca. 90046
+            </div>
+            <div>
+              310 739 2318
+            </div>
+            <div>
+              FED ID # 86-1108816
+            </div>
+          </td>
+          <td>
+            <div>
+              Lesee:
+            </div>
+            <div>
+              <%= @rental.billing_name %>
+            </div>
+            <div>
+              <%= "#{@rental.billing_address} #{@rental.billing_address_2}"%>
+            </div>
+            <div>
+              <%= @rental.billing_city %> <%= @rental.billing_state %>
+            </div>
+          </td>
+          <td>
+            Invoice #<%= @rental.id + 1000 %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table border="1" cellpadding="1" cellspacing="0" style="width: 600px;margin-top: 40px;">
+      <thead>
+        <tr>
+          <th>
+            Invoice Date
+          </th>
+          <th>
+            PO Number
+          </th>
+          <th style="text-align: center;">
+            Project Name
+          </th>
+          <th style="text-align: center;">
+            Rental Period
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <%= Date.today.strftime("%m/%d/%y") %>
+          </td>
+          <td>
+            0
+          </td>
+          <td style="text-align: center;">
+            <%= @rental.production_name %>
+          </td>
+          <td style="text-align: center;">
+            <%= @rental.dates %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table border="1" cellpadding="1" cellspacing="0" style="width: 600px;">
+      <thead>
+        <tr>
+          <th>
+            Line
+          </th>
+          <th>
+            Item #
+          </th>
+          <th style="text-align: center;">
+            Description
+          </th>
+          <th>
+            Rental Price
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rental.items.includes(:product).each_with_index do |item, index| %>
+          <tr>
+            <td>
+              <%= index + 1 %>
+            </td>
+            <td style="padding-left: 10px;">
+              <%= item.product.name %>
+            </td>
+            <td>
+              <%= item.product.description %>
+            </td>
+            <td style="text-align: right;">
+              <%= number_to_currency item.price %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+            Total:
+          </td>
+          <td style="text-align: right;">
+            <%= number_to_currency @rental.total %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

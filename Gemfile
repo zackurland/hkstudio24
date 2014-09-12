@@ -18,13 +18,11 @@ gem 'devise'
 gem 'will_paginate', '~> 3.0'
 gem "paperclip"
 gem 'aws-sdk'
-gem 'devise'
-gem 'money-rails'
+gem 'sendgrid'
 
 group :development do
   gem 'mysql2'
   gem 'foreman'
-  gem 'pry-rails'
 end
 
 group :development, :test do

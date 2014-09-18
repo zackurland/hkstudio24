@@ -4,20 +4,28 @@ class Rental < ActiveRecord::Base
   validates :production_name, :production_company, :billing_name, :billing_address, :billing_city, :billing_state, :billing_country, :billing_zip_code,
   :designer_name, :designer_email, :designer_phone_number, presence: true
 
-  accepts_nested_attributes_for :items
+  validates :your_name, :your_email, :your_phone_number, presence: true, if: :form_not_filled_out_by_designer?
+
+  validate :items_have_prices, if: :approved?
+
+  accepts_nested_attributes_for :items, allow_destroy: true
 
   validates :start_date, :end_date, presence: true
 
+  def approved?
+    status == "approved"
+  end
+
   def contact_email
-    filled_out_by_designer ? designer_email : filled_out_email
+    filled_out_by_designer ? designer_email : your_email
   end
 
   def contact_name
-    filled_out_by_designer? ? designer_name : filled_out_name
+    filled_out_by_designer? ? designer_name : your_name
   end
 
   def contact_phone_number
-    filled_out_by_designer ? designer_phone_number : filled_out_phone_number
+    filled_out_by_designer ? designer_phone_number : your_phone_number
   end
 
   def dates
@@ -31,11 +39,46 @@ class Rental < ActiveRecord::Base
     cart.clear!
   end
 
+  def rental_period_in_days
+    ((end_date - start_date) / 86400).round
+  end
+
+  def pending?
+    status == "pending"
+  end
+
+  def rejected?
+    status == "rejected"
+  end
+
   def total
     total = Money.new(0)
     items.each do |item|
       total += item.price || item.product.price || Money.new(0)
     end
     total
+  end
+
+  private
+
+  def form_filled_out_by_designer?
+    filled_out_by_designer == "1"
+  end
+
+  def form_not_filled_out_by_designer?
+    !filled_out_by_designer?
+  end
+
+  def items_have_prices
+    prices_are_missing = false
+    items.each do |item|
+      if !item._destroy && item.price_cents.nil?
+        prices_are_missing = true
+      end
+    end
+
+    if prices_are_missing
+      errors.add(:items, "need to have a price")
+    end
   end
 end

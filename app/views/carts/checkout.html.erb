@@ -111,41 +111,43 @@
                 <div class="row nmhs mtxs">
                   <div class="col-sm-4 phs mtxxxs">
                     <div class="c-2">
-                      Billing City
-                    </div>
-                  </div>
-                  <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :billing_city, class: "paxxs full-width bras bss bwas bc-accent" %>
-                  </div>
-                </div>
-                <div class="row nmhs mtxs">
-                  <div class="col-sm-4 phs mtxxxs">
-                    <div class="c-2">
-                      Billing State
-                    </div>
-                  </div>
-                  <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :billing_state, class: "paxxs full-width bras bss bwas bc-accent" %>
-                  </div>
-                </div>
-                <div class="row nmhs mtxs">
-                  <div class="col-sm-4 phs mtxxxs">
-                    <div class="c-2">
                       Billing Country
                     </div>
                   </div>
                   <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :billing_country, class: "paxxs full-width bras bss bwas bc-accent" %>
+                    <%= f.country_select(:billing_country, ["United States of America"], { prompt: "Country" }, { id: "billing-country", class: "dvm full-width bras bss bwas bc-accent js-country-select-with-state", data: { states_target: "#billing-state" } } ) %>
                   </div>
                 </div>
-                <div class="row nmhs mtxs">
-                  <div class="col-sm-4 phs mtxxxs">
-                    <div class="c-2">
-                      Billing Zip Code
+                <div class="<%= "invisible " unless @rental.billing_country.present? %>js-state-wrapper">
+                  <div class="row nmhs mtxs">
+                    <div class="col-sm-4 phs mtxxxs">
+                      <div class="c-2">
+                        Billing City
+                      </div>
+                    </div>
+                    <div class="col-sm-8 phs mtxxxs">
+                      <%= f.text_field :billing_city, placeholder: "City", id: "billing-city", class: "paxxs full-width bras bss bwas bc-accent" %>
                     </div>
                   </div>
-                  <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :billing_zip_code, class: "paxxs full-width bras bss bwas bc-accent" %>
+                  <div class="row nmhs mtxs">
+                    <div class="col-sm-4 phs mtxxxs">
+                      <div class="c-2">
+                        Billing State
+                      </div>
+                    </div>
+                    <div class="col-sm-8 phs mtxxxs">
+                      <%= f.select :billing_state, @rental.billing_country.present? ? options_for_select(Country.find_country_by_name(@rental.billing_country).states.values.map{|value| value["name"]}, @rental.billing_state) : [], {prompt: "State"}, id: "billing-state", class: "dvm full-width bras bss bwas bc-accent" %>
+                    </div>
+                  </div>
+                  <div class="row nmhs mtxs">
+                    <div class="col-sm-4 phs mtxxxs">
+                      <div class="c-2">
+                        Billing Zip Code
+                      </div>
+                    </div>
+                    <div class="col-sm-8 phs mtxxxs">
+                      <%= f.text_field :billing_zip_code, class: "paxxs full-width bras bss bwas bc-accent" %>
+                    </div>
                   </div>
                 </div>
                 <div class="mtm c-1 fsl">
@@ -178,7 +180,7 @@
                     </div>
                   </div>
                   <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :designer_phone_number, class: "paxxs full-width bras bss bwas bc-accent" %>
+                    <%= f.text_field :designer_phone_number, class: "paxxs full-width bras bss bwas bc-accent js-phone-number" %>
                   </div>
                 </div>
                 <div class="mtm c-1 fsl">
@@ -195,7 +197,7 @@
                       </div>
                     </div>
                     <div class="col-sm-8 phs mtxxxs">
-                      <%= f.text_field :filled_out_name, class: "paxxs full-width bras bss bwas bc-accent" %>
+                      <%= f.text_field :your_name, class: "paxxs full-width bras bss bwas bc-accent" %>
                     </div>
                   </div>
                   <div class="row nmhs mtxs">
@@ -205,7 +207,7 @@
                       </div>
                     </div>
                     <div class="col-sm-8 phs mtxxxs">
-                      <%= f.text_field :filled_out_email, class: "paxxs full-width bras bss bwas bc-accent" %>
+                      <%= f.text_field :your_email, class: "paxxs full-width bras bss bwas bc-accent" %>
                     </div>
                   </div>
                   <div class="row nmhs mtxs">
@@ -215,7 +217,7 @@
                       </div>
                     </div>
                     <div class="col-sm-8 phs mtxxxs">
-                      <%= f.text_field :filled_out_phone_number, class: "paxxs full-width bras bss bwas bc-accent" %>
+                      <%= f.text_field :your_phone_number, class: "paxxs full-width bras bss bwas bc-accent js-phone-number" %>
                     </div>
                   </div>
                 </div>

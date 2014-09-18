@@ -28,8 +28,13 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :rentals
+  resources :rentals do
+    collection do
+      get :requested
+    end
+  end
 
+  get '/countries/:country/states', to: 'countries#states'
   get "/cart", to: "carts#show"
   patch "/cart", to: "carts#update"
   put "/cart", to: "carts#update"

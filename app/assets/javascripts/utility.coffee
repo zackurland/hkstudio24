@@ -10,3 +10,7 @@ $(document).ready ->
       altFormat: "yy/mm/dd",
       dateFormat: "mm/dd/yy",
       altField: $(this).next()
+
+  $('.js-phone-number').formatter
+    'pattern': '({{999}}) {{999}} {{9999}}'
+    'persistent': true

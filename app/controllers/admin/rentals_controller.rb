@@ -21,7 +21,7 @@ class Admin::RentalsController < AdminController
 		if @rental.update_attributes(rental_params)
 			redirect_to admin_rental_path(@rental)
 		else
-			render :show
+			render :edit
 		end
 	end
 
@@ -46,7 +46,7 @@ class Admin::RentalsController < AdminController
 	private
 
 	def rental_params
-		params.require(:rental).permit(:start_date, :end_date, :status, items_attributes: [:id, :price])
+		params.require(:rental).permit(:start_date, :end_date, :status, items_attributes: [:id, :price, :_destroy])
 	end
 
 	def navigation

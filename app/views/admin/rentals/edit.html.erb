@@ -37,13 +37,13 @@
       <th class="pbxs pls">
       </th>
       <th class="pbxs pls">
-        Price
+        Price for total rental period
       </th>
       <th class="pbxs pls">
       </th>
     </tr>
     <%= f.fields_for :items do |items_fields| %>
-      <tr>
+      <tr class="js-admin-rental-item" data-price="<%= items_fields.object.price.to_f %>">
         <td class="pbm">
           <%= image_tag items_fields.object.product.photo.url(:thumbnail), class: "img-responsive bras" %>
         </td>
@@ -51,10 +51,10 @@
           <%= items_fields.object.product.name %>
         </td>
         <td class="pbm pls">
-          <%= items_fields.text_field :price, value: items_fields.object.price || items_fields.object.product.price, class: "paxxs bras bss bwas bc-accent" %>
+          <%= items_fields.text_field :price, value: items_fields.object.price || items_fields.object.product.price, class: "paxxs bras bss bwas bc-accent js-admin-rental-item-price" %>
         </td>
         <td class="pbm pls">
-          <i class="fa fa-times c-accent fsm"></i>
+          <i class="fa fa-times c-accent fsm pointer js-admin-rental-item-remove"></i>
         </td>
       </tr>
     <% end %>
@@ -64,12 +64,16 @@
       <td class="pls fsm">
         Total
       </td>
-      <td class="pls fsm">
-        <%= number_to_currency @rental.total %>
-      </td>
+      <td class="pls fsm js-admin-rental-total"><%= number_to_currency @rental.total %></td>
       <td>
       </td>
     </tr>
   </table>
-  <%= link_to "Reject", "/", class: "btn btn-danger bras" %> <%= f.submit "Approve", class: "btn btn-success bras" %>
+  <div class="mtm">
+    <% if @rental.pending? %>
+      <%= link_to "Reject", "/", class: "btn btn-danger bras" %> <%= f.submit "Approve", class: "btn btn-success bras" %>
+    <% else %>
+      <%= f.submit class: "btn btn-success bras" %>
+    <% end %>
+  </div>
 <% end %>

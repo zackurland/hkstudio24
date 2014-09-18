@@ -19,6 +19,8 @@ gem 'will_paginate', '~> 3.0'
 gem "paperclip"
 gem 'aws-sdk'
 gem 'sendgrid'
+gem 'countries'
+gem 'country_select', '~> 1.3.0'
 
 group :development do
   gem 'mysql2'

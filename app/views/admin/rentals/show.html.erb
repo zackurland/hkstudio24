@@ -36,10 +36,7 @@
         <%= @rental.billing_name %>
       </div>
       <div>
-        <%= @rental.billing_address %>
-      </div>
-      <div>
-        <%= @rental.billing_address_2 %>
+        <%= @rental.billing_address %> <%= @rental.billing_address_2 %>
       </div>
       <div>
         <%= @rental.billing_city %>, <%= @rental.billing_state %> <%= @rental.billing_zip_code %>
@@ -68,13 +65,13 @@
           Request By
         </div>
         <div>
-          <%= @rental.filled_out_name %>
+          <%= @rental.your_name %>
         </div>
         <div>
-          <%= @rental.filled_out_email %>
+          <%= @rental.your_email %>
         </div>
         <div>
-          <%= @rental.filled_out_phone_number %>
+          <%= @rental.your_phone_number %>
         </div>
       </div>
     <% end %>

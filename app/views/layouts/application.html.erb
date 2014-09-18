@@ -36,15 +36,22 @@
   </div>
   <div id="mobile-navigation" class="fixed top left dvl lhl bg-1 full-width visible-xs">
     <div class="row nmhxs">
-      <div class="col-xs-4 phxs">
+      <div class="col-xs-2 phxs">
         <div class="mtxxxs mlxxxs dam lhs c-3 c-4-hover braxs bss bwas bc-3 bc-4-hover text-center pointer js-navigation-toggle">
           <i class="fa fa-bars fsl lhm"></i>
         </div>
       </div>
-      <div class="col-xs-4 phxs">
+      <div class="col-xs-8 phxs">
         <div class="c-4 fsl lhl text-center">
           <%= link_to "HK STUDIO", root_path %>
         </div>
+      </div>
+      <div class="col-xs-2 phxs">
+        <%= link_to cart_path do %>
+          <div class="mtxxxs mrxxxs dam lhs c-3 c-4-hover braxs bss bwas bc-3 bc-4-hover text-center pull-right pointer">
+            <i class="fa fa-shopping-cart fsl lhm"></i>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

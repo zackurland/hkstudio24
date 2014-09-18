@@ -13,4 +13,3 @@ $(document).ready ->
 
   $('.js-phone-number').formatter
     'pattern': '({{999}}) {{999}} {{9999}}'
-    'persistent': true

@@ -1,35 +1,26 @@
-<div class="row pbxxl mhn mtxs">
-  <div class="col-sm-4 col-md-3 col-lg-2 phn mtm">
-    <div class="pal bg-4 brrm">
-      <div class="c-accent fsxs text-center">
-        <%= link_to products_path do %>
-          <table>
-            <tr>
-              <td>
-                <i class="fa fa-caret-left fsm"></i>
-              </td>
-              <td class="plxs">
-                Back to Jewelry Feed
-              </td>
-            </tr>
-          </table>
-        <% end %>
-      </div>
+<%= content_for :navigation do %>
+  <div class="c-accent fsxs text-center">
+    <%= link_to products_path do %>
+      <table>
+        <tr>
+          <td>
+            <i class="fa fa-caret-left fsm"></i>
+          </td>
+          <td class="plxs">
+            Back to Jewelry Feed
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+<% end %>
+<%= content_for :content do %>
+  <div class="mtl">
+    <div class="c-2">
+      Thank you for requesting to rent from HK Studio. We will contact you shortly about your order.
     </div>
-    <div class="mtxs text-center">
-      <%= link_to "Admin Panel", admin_products_path, class: "c-2 c-1-hover fsxxs" %>
+    <div class="mtxs">
+      <%= link_to "Continue Browsing...", root_path, class: "c-accent" %>
     </div>
   </div>
-  <div class="col-sm-8 col-md-9 col-lg-10 phn">
-    <div class="phl">
-      <div class="mtl">
-        <div class="c-2">
-          Thank you for requesting to rent from HK Studio. We will contact you shortly about your order.
-        </div>
-        <div class="mtxs">
-          <%= link_to "Continue Browsing...", root_path, class: "c-accent" %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<% end %>

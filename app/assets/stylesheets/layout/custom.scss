@@ -11,3 +11,48 @@
     margin: 0;
   }
 }
+
+@media (min-width: 768px) {
+
+  .navigation {
+    display: block;
+    margin-top: 20px;
+    position: static !important;
+
+    .navigation-inner {
+      -webkit-border-top-right-radius: 15px;
+      -webkit-border-bottom-right-radius: 15px;
+      -moz-border-radius-topright: 15px;
+      -moz-border-radius-bottomright: 15px;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+  }
+
+  #content {
+    position: static !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .navigation {
+    bottom: 0;
+    left: -80%;
+    margin-top: 0px;
+    position: fixed;
+    right: auto;
+    top: 0;
+    width: 80%;
+
+    .navigation-inner {
+      -webkit-border-top-right-radius: 0px;
+      -webkit-border-bottom-right-radius: 0px;
+      -moz-border-radius-topright: 0px;
+      -moz-border-radius-bottomright: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      height: 100%;
+      overflow-y: auto;
+    }
+  }
+}

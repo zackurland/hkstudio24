@@ -1,234 +1,225 @@
-<div class="row pbxxl mhn mtxs">
-  <div class="col-sm-4 col-md-3 col-lg-2 phn mtm">
-    <div class="pal bg-4 brrm">
-      <div class="c-accent fsxs">
-        <%= link_to products_path do %>
-          <table>
-            <tr>
-              <td>
-                <i class="fa fa-caret-left fsm"></i>
-              </td>
-              <td class="plxs">
-                Back to Jewelry Feed
-              </td>
-            </tr>
-          </table>
-        <% end %>
-        <%= link_to cart_path do %>
-          <table>
-            <tr>
-              <td>
-                <i class="fa fa-caret-left fsm"></i>
-              </td>
-              <td class="plxs">
-                Back to Cart
-              </td>
-            </tr>
-          </table>
-        <% end %>
-      </div>
-    </div>
-    <div class="mtxs text-center">
-      <%= link_to "Admin Panel", admin_products_path, class: "c-2 c-1-hover fsxxs" %>
-    </div>
+<%= content_for :navigation do %>
+  <div class="c-accent fsxs">
+    <%= link_to products_path do %>
+      <table>
+        <tr>
+          <td>
+            <i class="fa fa-caret-left fsm"></i>
+          </td>
+          <td class="plxs">
+            Back to Jewelry Feed
+          </td>
+        </tr>
+      </table>
+    <% end %>
+    <%= link_to cart_path do %>
+      <table>
+        <tr>
+          <td>
+            <i class="fa fa-caret-left fsm"></i>
+          </td>
+          <td class="plxs">
+            Back to Cart
+          </td>
+        </tr>
+      </table>
+    <% end %>
   </div>
-  <div class="col-sm-8 col-md-9 col-lg-10 phn">
-    <div class="phl">
-      <div class="mtm">
-        <div class="c-2">
-          You are requesting to rent <b class="c-1"><%= pluralize(current_cart.items.count, "item") %></b> from <b class="c-1"><%= current_cart.rental_start_date.strftime("%m/%d/%y") %></b> to <b class="c-1"><%= current_cart.rental_end_date.strftime("%m/%d/%y") %></b>
-        </div>
-        <div class="mtm">
-          <div class="row nmhs">
-            <div class="col-lg-8 phs">
-              <% if @rental.errors.any? %>
-                <% @rental.errors.full_messages.each do |message| %>
-                  <div class="mtxs-plus c-error">
-                    <%= message %>
-                  </div>
-                <% end %>
-              <% end %>
-              <%= form_for @rental do |f| %>
-                <%= f.hidden_field :status, value: "pending" %>
-                <%= f.hidden_field :start_date, value: current_cart.rental_start_date %>
-                <%= f.hidden_field :end_date, value: current_cart.rental_end_date %>
-                <div class="mtm c-1 fsl">
-                  Production Information
-                </div>
-                <div class="row nmhs mtxs">
-                  <div class="col-sm-4 phs mtxxxs">
-                    <div class="c-2">
-                      Production Name
-                    </div>
-                  </div>
-                  <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :production_name, class: "paxxs full-width bras bss bwas bc-accent" %>
-                  </div>
-                </div>
-                <div class="row nmhs mtxs">
-                  <div class="col-sm-4 phs mtxxxs">
-                    <div class="c-2">
-                      Production Company
-                    </div>
-                  </div>
-                  <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :production_company, class: "paxxs full-width bras bss bwas bc-accent" %>
-                  </div>
-                </div>
-                <div class="mtm c-1 fsl">
-                  Billing Information
-                </div>
-                <div class="row nmhs mtxs">
-                  <div class="col-sm-4 phs mtxxxs">
-                    <div class="c-2">
-                      Billing Full Name
-                    </div>
-                  </div>
-                  <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :billing_name, class: "paxxs full-width bras bss bwas bc-accent" %>
-                  </div>
-                </div>
-                <div class="row nmhs mtxs">
-                  <div class="col-sm-4 phs mtxxxs">
-                    <div class="c-2">
-                      Billing Address
-                    </div>
-                  </div>
-                  <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :billing_address, class: "paxxs full-width bras bss bwas bc-accent" %>
-                  </div>
-                </div>
-                <div class="row nmhs mtxs">
-                  <div class="col-sm-4 phs mtxxxs">
-                    <div class="c-2">
-                      Billing Address 2
-                    </div>
-                  </div>
-                  <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :billing_address_2, class: "paxxs full-width bras bss bwas bc-accent" %>
-                  </div>
-                </div>
-                <div class="row nmhs mtxs">
-                  <div class="col-sm-4 phs mtxxxs">
-                    <div class="c-2">
-                      Billing Country
-                    </div>
-                  </div>
-                  <div class="col-sm-8 phs mtxxxs">
-                    <%= f.country_select(:billing_country, ["United States of America"], { prompt: "Country" }, { id: "billing-country", class: "dvm full-width bras bss bwas bc-accent js-country-select-with-state", data: { states_target: "#billing-state" } } ) %>
-                  </div>
-                </div>
-                <div class="<%= "invisible " unless @rental.billing_country.present? %>js-state-wrapper">
-                  <div class="row nmhs mtxs">
-                    <div class="col-sm-4 phs mtxxxs">
-                      <div class="c-2">
-                        Billing City
-                      </div>
-                    </div>
-                    <div class="col-sm-8 phs mtxxxs">
-                      <%= f.text_field :billing_city, placeholder: "City", id: "billing-city", class: "paxxs full-width bras bss bwas bc-accent" %>
-                    </div>
-                  </div>
-                  <div class="row nmhs mtxs">
-                    <div class="col-sm-4 phs mtxxxs">
-                      <div class="c-2">
-                        Billing State
-                      </div>
-                    </div>
-                    <div class="col-sm-8 phs mtxxxs">
-                      <%= f.select :billing_state, @rental.billing_country.present? ? options_for_select(Country.find_country_by_name(@rental.billing_country).states.values.map{|value| value["name"]}, @rental.billing_state) : [], {prompt: "State"}, id: "billing-state", class: "dvm full-width bras bss bwas bc-accent" %>
-                    </div>
-                  </div>
-                  <div class="row nmhs mtxs">
-                    <div class="col-sm-4 phs mtxxxs">
-                      <div class="c-2">
-                        Billing Zip Code
-                      </div>
-                    </div>
-                    <div class="col-sm-8 phs mtxxxs">
-                      <%= f.text_field :billing_zip_code, class: "paxxs full-width bras bss bwas bc-accent" %>
-                    </div>
-                  </div>
-                </div>
-                <div class="mtm c-1 fsl">
-                  Designer Information
-                </div>
-                <div class="row nmhs mtxs">
-                  <div class="col-sm-4 phs mtxxxs">
-                    <div class="c-2">
-                      Full Name
-                    </div>
-                  </div>
-                  <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :designer_name, class: "paxxs full-width bras bss bwas bc-accent" %>
-                  </div>
-                </div>
-                <div class="row nmhs mtxs">
-                  <div class="col-sm-4 phs mtxxxs">
-                    <div class="c-2">
-                      Email
-                    </div>
-                  </div>
-                  <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :designer_email, class: "paxxs full-width bras bss bwas bc-accent" %>
-                  </div>
-                </div>
-                <div class="row nmhs mtxs">
-                  <div class="col-sm-4 phs mtxxxs">
-                    <div class="c-2">
-                      Phone Number
-                    </div>
-                  </div>
-                  <div class="col-sm-8 phs mtxxxs">
-                    <%= f.text_field :designer_phone_number, class: "paxxs full-width bras bss bwas bc-accent js-phone-number" %>
-                  </div>
-                </div>
-                <div class="mtm c-1 fsl">
-                  Your Information
-                </div>
-                <div class="mtxs">
-                  <%= f.check_box :filled_out_by_designer, class: "js-checkout-filled-out-by-designer" %> I am the designer
-                </div>
-                <div class="js-checkout-your-information">
-                  <div class="row nmhs mtxs">
-                    <div class="col-sm-4 phs mtxxxs">
-                      <div class="c-2">
-                        Full Name
-                      </div>
-                    </div>
-                    <div class="col-sm-8 phs mtxxxs">
-                      <%= f.text_field :your_name, class: "paxxs full-width bras bss bwas bc-accent" %>
-                    </div>
-                  </div>
-                  <div class="row nmhs mtxs">
-                    <div class="col-sm-4 phs mtxxxs">
-                      <div class="c-2">
-                        Email
-                      </div>
-                    </div>
-                    <div class="col-sm-8 phs mtxxxs">
-                      <%= f.text_field :your_email, class: "paxxs full-width bras bss bwas bc-accent" %>
-                    </div>
-                  </div>
-                  <div class="row nmhs mtxs">
-                    <div class="col-sm-4 phs mtxxxs">
-                      <div class="c-2">
-                        Phone Number
-                      </div>
-                    </div>
-                    <div class="col-sm-8 phs mtxxxs">
-                      <%= f.text_field :your_phone_number, class: "paxxs full-width bras bss bwas bc-accent js-phone-number" %>
-                    </div>
-                  </div>
-                </div>
-                <div class="mtl">
-                  <%= f.submit "Submit Rental Request", class: "btn btn-primary paxxs full-width bras" %>
-                </div>
-              <% end %>
+<% end %>
+<%= content_for :content do %>
+  <div class="mtm">
+    <div class="c-2">
+      You are requesting to rent <b class="c-1"><%= pluralize(current_cart.items.count, "item") %></b> from <b class="c-1"><%= current_cart.rental_start_date.strftime("%m/%d/%y") %></b> to <b class="c-1"><%= current_cart.rental_end_date.strftime("%m/%d/%y") %></b>
+    </div>
+    <div class="mtm">
+      <div class="row nmhs">
+        <div class="col-lg-8 phs">
+          <% if @rental.errors.any? %>
+            <% @rental.errors.full_messages.each do |message| %>
+              <div class="mtxs-plus c-error">
+                <%= message %>
+              </div>
+            <% end %>
+          <% end %>
+          <%= form_for @rental do |f| %>
+            <%= f.hidden_field :status, value: "pending" %>
+            <%= f.hidden_field :start_date, value: current_cart.rental_start_date %>
+            <%= f.hidden_field :end_date, value: current_cart.rental_end_date %>
+            <div class="mtm c-1 fsl">
+              Production Information
             </div>
-          </div>
+            <div class="row nmhs mtxs">
+              <div class="col-sm-4 phs mtxxxs">
+                <div class="c-2">
+                  Production Name
+                </div>
+              </div>
+              <div class="col-sm-8 phs mtxxxs">
+                <%= f.text_field :production_name, class: "paxxs full-width bras bss bwas bc-accent" %>
+              </div>
+            </div>
+            <div class="row nmhs mtxs">
+              <div class="col-sm-4 phs mtxxxs">
+                <div class="c-2">
+                  Production Company
+                </div>
+              </div>
+              <div class="col-sm-8 phs mtxxxs">
+                <%= f.text_field :production_company, class: "paxxs full-width bras bss bwas bc-accent" %>
+              </div>
+            </div>
+            <div class="mtm c-1 fsl">
+              Billing Information
+            </div>
+            <div class="row nmhs mtxs">
+              <div class="col-sm-4 phs mtxxxs">
+                <div class="c-2">
+                  Billing Full Name
+                </div>
+              </div>
+              <div class="col-sm-8 phs mtxxxs">
+                <%= f.text_field :billing_name, class: "paxxs full-width bras bss bwas bc-accent" %>
+              </div>
+            </div>
+            <div class="row nmhs mtxs">
+              <div class="col-sm-4 phs mtxxxs">
+                <div class="c-2">
+                  Billing Address
+                </div>
+              </div>
+              <div class="col-sm-8 phs mtxxxs">
+                <%= f.text_field :billing_address, class: "paxxs full-width bras bss bwas bc-accent" %>
+              </div>
+            </div>
+            <div class="row nmhs mtxs">
+              <div class="col-sm-4 phs mtxxxs">
+                <div class="c-2">
+                  Billing Address 2
+                </div>
+              </div>
+              <div class="col-sm-8 phs mtxxxs">
+                <%= f.text_field :billing_address_2, class: "paxxs full-width bras bss bwas bc-accent" %>
+              </div>
+            </div>
+            <div class="row nmhs mtxs">
+              <div class="col-sm-4 phs mtxxxs">
+                <div class="c-2">
+                  Billing Country
+                </div>
+              </div>
+              <div class="col-sm-8 phs mtxxxs">
+                <%= f.country_select(:billing_country, ["United States of America"], { prompt: "Country" }, { id: "billing-country", class: "dvm full-width bras bss bwas bc-accent js-country-select-with-state", data: { states_target: "#billing-state" } } ) %>
+              </div>
+            </div>
+            <div class="<%= "invisible " unless @rental.billing_country.present? %>js-state-wrapper">
+              <div class="row nmhs mtxs">
+                <div class="col-sm-4 phs mtxxxs">
+                  <div class="c-2">
+                    Billing City
+                  </div>
+                </div>
+                <div class="col-sm-8 phs mtxxxs">
+                  <%= f.text_field :billing_city, placeholder: "City", id: "billing-city", class: "paxxs full-width bras bss bwas bc-accent" %>
+                </div>
+              </div>
+              <div class="row nmhs mtxs">
+                <div class="col-sm-4 phs mtxxxs">
+                  <div class="c-2">
+                    Billing State
+                  </div>
+                </div>
+                <div class="col-sm-8 phs mtxxxs">
+                  <%= f.select :billing_state, @rental.billing_country.present? ? options_for_select(Country.find_country_by_name(@rental.billing_country).states.values.map{|value| value["name"]}, @rental.billing_state) : [], {prompt: "State"}, id: "billing-state", class: "dvm full-width bras bss bwas bc-accent" %>
+                </div>
+              </div>
+              <div class="row nmhs mtxs">
+                <div class="col-sm-4 phs mtxxxs">
+                  <div class="c-2">
+                    Billing Zip Code
+                  </div>
+                </div>
+                <div class="col-sm-8 phs mtxxxs">
+                  <%= f.text_field :billing_zip_code, class: "paxxs full-width bras bss bwas bc-accent" %>
+                </div>
+              </div>
+            </div>
+            <div class="mtm c-1 fsl">
+              Designer Information
+            </div>
+            <div class="row nmhs mtxs">
+              <div class="col-sm-4 phs mtxxxs">
+                <div class="c-2">
+                  Full Name
+                </div>
+              </div>
+              <div class="col-sm-8 phs mtxxxs">
+                <%= f.text_field :designer_name, class: "paxxs full-width bras bss bwas bc-accent" %>
+              </div>
+            </div>
+            <div class="row nmhs mtxs">
+              <div class="col-sm-4 phs mtxxxs">
+                <div class="c-2">
+                  Email
+                </div>
+              </div>
+              <div class="col-sm-8 phs mtxxxs">
+                <%= f.text_field :designer_email, class: "paxxs full-width bras bss bwas bc-accent" %>
+              </div>
+            </div>
+            <div class="row nmhs mtxs">
+              <div class="col-sm-4 phs mtxxxs">
+                <div class="c-2">
+                  Phone Number
+                </div>
+              </div>
+              <div class="col-sm-8 phs mtxxxs">
+                <%= f.text_field :designer_phone_number, class: "paxxs full-width bras bss bwas bc-accent js-phone-number" %>
+              </div>
+            </div>
+            <div class="mtm c-1 fsl">
+              Your Information
+            </div>
+            <div class="mtxs">
+              <%= f.check_box :filled_out_by_designer, class: "js-checkout-filled-out-by-designer" %> I am the designer
+            </div>
+            <div class="js-checkout-your-information">
+              <div class="row nmhs mtxs">
+                <div class="col-sm-4 phs mtxxxs">
+                  <div class="c-2">
+                    Full Name
+                  </div>
+                </div>
+                <div class="col-sm-8 phs mtxxxs">
+                  <%= f.text_field :your_name, class: "paxxs full-width bras bss bwas bc-accent" %>
+                </div>
+              </div>
+              <div class="row nmhs mtxs">
+                <div class="col-sm-4 phs mtxxxs">
+                  <div class="c-2">
+                    Email
+                  </div>
+                </div>
+                <div class="col-sm-8 phs mtxxxs">
+                  <%= f.text_field :your_email, class: "paxxs full-width bras bss bwas bc-accent" %>
+                </div>
+              </div>
+              <div class="row nmhs mtxs">
+                <div class="col-sm-4 phs mtxxxs">
+                  <div class="c-2">
+                    Phone Number
+                  </div>
+                </div>
+                <div class="col-sm-8 phs mtxxxs">
+                  <%= f.text_field :your_phone_number, class: "paxxs full-width bras bss bwas bc-accent js-phone-number" %>
+                </div>
+              </div>
+            </div>
+            <div class="mtl">
+              <%= f.submit "Submit Rental Request", class: "btn btn-primary paxxs full-width bras" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>

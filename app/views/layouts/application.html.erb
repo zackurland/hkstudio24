@@ -3,32 +3,69 @@
 <head>
   <title>Hkstudio</title>
   <%= stylesheet_link_tag    'application', media: 'all'%>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"/>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="dvxxs bg-accent"></div>
-  <div class="pvs bg-1">
-    <div class="container phs">
-      <div class="fsxxl c-4 text-center">
-        <%= link_to "HK STUDIO", root_path %>
+  <div class="hidden-xs">
+    <div class="dvxxs bg-accent"></div>
+    <div class="pvs bg-1">
+      <div class="container phs">
+        <div class="hidden-xs">
+          <div class="fsxxl c-4 text-center">
+            <%= link_to "HK STUDIO", root_path %>
+          </div>
+          <table class="mha mtxs c-3 fsxxs lsm">
+            <tr>
+              <td class="phs">
+                ABOUT
+              </td>
+              <td class="phs">
+                TERMS
+              </td>
+              <td class="phs">
+                CONTACT
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
-      <table class="mha mtxs c-3 fsxxs lsm">
-        <tr>
-          <td class="phs">
-            ABOUT
-          </td>
-          <td class="phs">
-            TERMS
-          </td>
-          <td class="phs">
-            CONTACT
-          </td>
-        </tr>
-      </table>
     </div>
   </div>
-  <%= yield %>
+  <div id="mobile-navigation" class="fixed top left dvl lhl bg-1 full-width visible-xs">
+    <div class="row nmhxs">
+      <div class="col-xs-4 phxs">
+        <div class="mtxxxs mlxxxs dam lhs c-3 c-4-hover braxs bss bwas bc-3 bc-4-hover text-center pointer js-navigation-toggle">
+          <i class="fa fa-bars fsl lhm"></i>
+        </div>
+      </div>
+      <div class="col-xs-4 phxs">
+        <div class="c-4 fsl lhl text-center">
+          <%= link_to "HK STUDIO", root_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="content">
+    <div class="dvl visible-xs"></div>
+    <div class="row pbxxl mhn">
+      <div id="navigation" class="navigation col-sm-4 col-md-3 col-lg-2 phn">
+        <div class="navigation-inner pal bg-4 brrm">
+          <%= content_for :navigation %>
+        </div>
+        <div class="mtxs text-center">
+          <%= link_to "Admin Panel", admin_products_path, class: "c-2 c-1-hover fsxxs" %>
+        </div>
+      </div>
+      <div class="col-sm-8 col-md-9 col-lg-10 phn">
+        <div class="phl">
+          <%= content_for :content %>
+        </div>
+      </div>
+    </div>
+    <%= yield %>
+  </div>
 </body>
 </html>

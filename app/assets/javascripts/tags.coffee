@@ -26,7 +26,7 @@ $(document).ready ->
       unless categories[category_id]
         categories[category_id] = []
       categories[category_id].push($(@).data("id"))
-    filters = {}
-    filters["filters"] = categories
-    window.location = "#{location.protocol}//#{location.host}#{location.pathname}?#{$.param(filters)}"
+    q = {}
+    q["q"] = categories
+    window.location = "#{location.protocol}//#{location.host}#{location.pathname}?#{$.param(q)}"
 

@@ -15,7 +15,7 @@ gem 'money'
 gem 'money-rails'
 gem 'mail_form'
 gem 'devise'
-gem 'will_paginate', '~> 3.0'
+gem 'will_paginate'
 gem "paperclip"
 gem 'aws-sdk'
 gem 'sendgrid'

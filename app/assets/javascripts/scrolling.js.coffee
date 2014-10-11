@@ -1,8 +1,8 @@
 $(document).ready ->
   $(".js-infinite-scroll").each ->
     $(@).infinitescroll
-      navSelector  : ".pagination"
-      nextSelector : ".pagination a:last"
+      navSelector  : ".pagination:last"
+      nextSelector : ".pagination:last a.next_page"
       itemSelector : ".js-product-display"
       bufferPx     : 800,
       donetext     : "",

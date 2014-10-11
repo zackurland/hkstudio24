@@ -2,7 +2,7 @@ class Admin::CategoriesController < AdminController
   before_action :navigation
 
   def index
-    @categories = Category.order(:name)
+    @categories = Category.order(:display_index)
   end
 
   def show
@@ -43,6 +43,14 @@ class Admin::CategoriesController < AdminController
 
     @category.destroy
     redirect_to admin_categories_path
+  end
+
+  def reorder
+    params[:sortable].each_with_index do |id, index|
+      Category.find(id).update_column(:display_index, index + 1)
+    end
+
+    render json: true
   end
 
   private

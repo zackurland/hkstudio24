@@ -8,16 +8,42 @@
 <%= form_for [:admin, @category] do |f| %>
   <div class="row nmhxs">
     <div class="col-lg-8 phxs">
-      <div class="mtm-plus">
-        <%= f.text_field :name, placeholder: "Name", class: "paxs bss bwas bc-4 full-width" %>
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            Name
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <%= f.text_field :name, class: "paxs bss bwas bc-4 full-width" %>
+        </div>
       </div>
-      <div class="mtm-plus fsxs">
+      <% if @category.persisted? %>
+        <div class="row nmhxs mtm-plus">
+          <div class="col-sm-3 phxs">
+            <div class="pvxs">
+              Display Position
+            </div>
+          </div>
+          <div class="col-sm-9 phxs">
+            <%= f.text_field :display_index, class: "paxs bss bwas bc-4 full-width" %>
+          </div>
+        </div>
+      <% end %>
+      <div class="mtm-plus fsm">
         Tags
       </div>
       <div id="tags-list" class="mtm-plus">
         <%= f.fields_for :tags do |tags_fields| %>
-          <div class="mtxs">
-            <%= tags_fields.text_field :name, placeholder: "Tag", class: "paxs bss bwas bc-4 full-width js-admin-tag" %>
+          <div class="row nmhxs mtxs">
+            <div class="col-sm-3 phxs">
+              <div class="pvxs">
+                Tag Name
+              </div>
+            </div>
+            <div class="col-sm-9 phxs">
+              <%= tags_fields.text_field :name, class: "paxs bss bwas bc-4 full-width js-admin-tag" %>
+            </div>
           </div>
         <% end %>
       </div>

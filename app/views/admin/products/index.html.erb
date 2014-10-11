@@ -15,9 +15,12 @@
       </table>
     <% end %>
     <table class="row nmhxs mtm full-width">
-      <tbody>
+      <tbody class="js-sortable" data-url=<%= reorder_admin_products_url(page: params[:page], per_page: params[:per_page]) %>>
         <% @products.each_with_index do |product, index| %>
-          <tr class="<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
+          <tr id="<%= "sortable-#{product.id}" %>" class="<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
+            <td class="paxs">
+              <i class="fa fa-arrows"></i>
+            </td>
             <td class="col-xs-2 plxs pvxs">
               <%= image_tag product.photo.url(:thumbnail), class: "img-responsive" %>
             </td>
@@ -38,5 +41,8 @@
         <% end %>
       </tbody>
     </table>
+    <div class="mtxs text-center">
+      <%= will_paginate(@orders) %>
+    </div>
   </div>
 </div>

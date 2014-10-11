@@ -1,6 +1,5 @@
 $(document).ready ->
-  $(".js-toggle").click ->
-    $(@).toggleClass("active")
+  $("body").on "click", ".js-toggle", ->
     $target = $($(@).data("toggle-target"))
     className = $(@).data("toggle-class")
     $target.toggleClass(className)
@@ -14,3 +13,13 @@ $(document).ready ->
 
   $('.js-phone-number').formatter
     'pattern': '({{999}}) {{999}} {{9999}}'
+
+  $(".js-sortable").sortable
+    update: (event, ui) ->
+      data = $(this).sortable('serialize')
+      url = $(this).data("url")
+      $.ajax
+        data: data
+        type: 'POST'
+        url: url
+  $(".js-sortable").disableSelection()

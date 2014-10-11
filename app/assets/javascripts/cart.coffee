@@ -1,8 +1,8 @@
 $(document).ready ->
-  $(".js-cart-item-add").click ->
+  $("body").on "click", ".js-cart-item-add", ->
     $product = $(@).closest(".js-product-display")
 
-    if $product.hasClass("active")
+    if $product.data("in-cart") == true
       $(".js-cart-items-count").html(parseInt($(".js-cart-items-count").html(), 10) - 1)
       $.ajax
         type: "post"
@@ -11,11 +11,10 @@ $(document).ready ->
           _method: "delete"
           item:
             product_id: $product.data("id")
-      .success ->
-        console.log("remove hurrah")
       .error ->
         $(".js-cart-items-count").html(parseInt($(".js-cart-items-count").html(), 10) + 1)
-        console.log("remove unhurrah")
+      .complete ->
+        $product.data("in-cart", false)
     else
       $(".js-cart-items-count").html(parseInt($(".js-cart-items-count").html(), 10) + 1)
       $.ajax
@@ -24,29 +23,10 @@ $(document).ready ->
         data:
           item:
             product_id: $product.data("id")
-      .success ->
-        console.log("add hurrah")
       .error ->
         $(".js-cart-items-count").html(parseInt($(".js-cart-items-count").html(), 10) - 1)
-        console.log("add unhurrah")
-
-  $(".js-cart-item-remove").click ->
-    $item = $(@).closest(".js-cart-item")
-    $(".js-cart-items-count").html(parseInt($(".js-cart-items-count").html(), 10) - 1)
-    $.ajax
-      type: "post"
-      url: "/cart/items/remove"
-      data:
-        _method: "delete"
-        item:
-          product_id: $item.data("product-id")
-    .success ->
-      $item.animate {opacity: 0.01}, 400, ->
-        $item.animate {height: "0px"}, 400, ->
-          $item.remove()
-    .error ->
-      $(".js-cart-items-count").html(parseInt($(".js-cart-items-count").html(), 10) + 1)
-      console.log("remove unhurrah")
+      .complete ->
+        $product.data("in-cart", true)
 
   $(".js-cart-rental-date-form-input").change ->
     $(@).closest(".js-cart-rental-date-form").submit()

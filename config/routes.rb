@@ -1,8 +1,21 @@
 Rails.application.routes.draw do
   devise_for :users
   namespace :admin do
-    resources :products
-    resources :categories
+    resources :products do
+      collection do
+        post :reorder
+      end
+    end
+    resources :categories do
+      collection do
+        post :reorder
+      end
+    end
+    resources :tags do
+      collection do
+        post :reorder
+      end
+    end
     resources :rentals do
       collection do
         get :pending

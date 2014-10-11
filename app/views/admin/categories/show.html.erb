@@ -10,17 +10,22 @@
         </td>
       </tr>
     </table>
-    <div class="row nmhxs">
-      <div class="col-sm-3 phxs mtm">
-        Tags:
-      </div>
-      <div class="col-sm-9 phxs mtm">
-        <% @category.tags.each do |tag| %>
-          <div>
-            <%= tag.name %>
-          </div>
-        <% end %>
-      </div>
+    <div class="mtxs fss">
+      Tags
     </div>
+    <table>
+      <tbody class="js-sortable" data-url=<%= reorder_admin_tags_url %>>
+        <% @category.tags.order(:display_index).each_with_index do |tag, index| %>
+          <tr id="<%= "sortable-#{tag.id}" %>" class="<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
+            <td class="paxs">
+              <i class="fa fa-arrows"></i>
+            </td>
+            <td class="paxs fss">
+              <%= tag.name %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

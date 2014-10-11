@@ -2,7 +2,7 @@ class Admin::ProductsController < AdminController
   before_action :navigation
 
   def index
-    @products = Product.order(:name)
+    @products = Product.order(:display_index).paginate(page: params[:page], per_page: 50)
   end
 
   def new
@@ -48,6 +48,15 @@ class Admin::ProductsController < AdminController
 
     @product.destroy
     redirect_to :index
+  end
+
+  def reorder
+    offset = params[:page] ? (params[:page].to_i - 1) * 50 : 0
+    params[:sortable].each_with_index do |id, index|
+      Product.find(id).update_column(:display_index, index + offset + 1)
+    end
+
+    render json: true
   end
 
   private

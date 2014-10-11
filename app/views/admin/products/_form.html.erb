@@ -18,6 +18,9 @@
         <%= f.text_field :price, placeholder: "Price", class: "paxs bss bwas bc-4 full-width" %>
       </div>
       <div class="mtm-plus">
+        <%= f.text_area :description, placeholder: "Description", class: "paxs bss bwas bc-4 full-width" %>
+      </div>
+      <div class="mtm-plus">
         <% if @product.photo.attachment? %>
           <%= image_tag @product.photo.url(:thumbnail) %>
         <% end %>

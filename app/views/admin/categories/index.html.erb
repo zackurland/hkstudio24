@@ -15,9 +15,12 @@
       </table>
     <% end %>
     <table class="mtm full-width">
-      <tbody>
+      <tbody class="js-sortable" data-url=<%= reorder_admin_categories_url %>>
         <% @categories.each_with_index do |category, index| %>
-          <tr class="pas<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
+          <tr id="<%= "sortable-#{category.id}" %>" class="pas<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
+            <td class="phxxxs pvxs">
+              <i class="fa fa-arrows"></i>
+            </td>
             <td class="plxs prxxxs pvxs fwl full-width">
               <%= link_to category.name, admin_category_path(category) %>
             </td>

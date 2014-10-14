@@ -8,37 +8,82 @@
 <%= form_for [:admin, @product] do |f| %>
   <div class="row nmhxs">
     <div class="col-lg-8 phxs">
-      <div class="mtm-plus">
-        <%= f.text_field :name, placeholder: "Name", class: "paxs bss bwas bc-4 full-width" %>
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            Name
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <%= f.text_field :name, class: "paxs bss bwas bc-4 full-width" %>
+        </div>
       </div>
-      <div class="mtm-plus">
-        <%= f.text_field :dimensions, placeholder: "Dimensions", class: "paxs bss bwas bc-4 full-width" %>
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            Dimensions
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <%= f.text_field :dimensions, class: "paxs bss bwas bc-4 full-width" %>
+        </div>
       </div>
-      <div class="mtm-plus">
-        <%= f.text_field :price, placeholder: "Price", class: "paxs bss bwas bc-4 full-width" %>
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            Daily Rental Cost
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <%= f.text_field :price, class: "paxs bss bwas bc-4 full-width" %>
+        </div>
       </div>
-      <div class="mtm-plus">
-        <%= f.text_area :description, placeholder: "Description", class: "paxs bss bwas bc-4 full-width" %>
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            Description
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <%= f.text_area :description, placeholder: "Description", class: "paxs bss bwas bc-4 full-width" %>
+        </div>
       </div>
-      <div class="mtm-plus">
-        <% if @product.photo.attachment? %>
-          <%= image_tag @product.photo.url(:thumbnail) %>
-        <% end %>
-        <%= f.fields_for :photo do |photo_fields| %>
-          <%= photo_fields.file_field :attachment %>
-        <% end %>
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            Image
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <% if @product.photo.attachment? %>
+            <%= image_tag @product.photo.url(:thumbnail) %>
+          <% end %>
+          <%= f.fields_for :photo do |photo_fields| %>
+            <%= photo_fields.file_field :attachment %>
+          <% end %>
+        </div>
       </div>
       <div class="mtm-plus">
         Tags
       </div>
-      <div class="mtm-plus">
-        <% @categories.each do |category| %>
-          <div class="fss"><%= category.name %></div>
-          <% category.tags.each do |tag| %>
-            <div class=""><%= f.check_box :tag_ids, { :multiple => true }, tag.id, nil %> <%= tag.name %></div>
-          <% end %>
-        <% end %>
-      </div>
+      <% @categories.each do |category| %>
+        <div class="row nmhxs mtm-plus">
+          <div class="col-sm-3 phxs">
+            <div class="pvxs">
+              <%= category.name %>
+            </div>
+          </div>
+          <div class="col-sm-9 phxs">
+            <div class="row nmhxs">
+              <% category.tags.each do |tag| %>
+                <div class="col-sm-3 phxs mtxs">
+                  <%= f.check_box :tag_ids, { :multiple => true }, tag.id, nil %> <%= tag.name %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
       <div class="mtm-plus">
         <%= f.submit class: "btn btn-primary full-width" %>
       </div>

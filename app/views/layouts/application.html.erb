@@ -57,10 +57,15 @@
   </div>
   <div id="content">
     <div class="dvl visible-xs"></div>
-    <div class="row pbxxl mhn">
+    <div class="row pbxxxxl mhn">
       <div id="navigation" class="navigation col-sm-4 col-md-3 col-lg-2 phn">
         <div class="navigation-inner pal bg-4 brrm">
-          <%= content_for :navigation %>
+          <div class="c-accent fsxs text-center">
+            <%= link_to "About", about_path, class: "c-accent" %> - <%= link_to "Terms", "#{about_path}#terms" %> - <%= link_to "Contact", "#" %>
+          </div>
+          <div class="mtxs">
+            <%= content_for :navigation %>
+          </div>
         </div>
         <div class="mtxs text-center">
           <%= link_to "Admin Panel", admin_products_path, class: "c-2 c-1-hover fsxxs" %>

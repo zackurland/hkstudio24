@@ -47,7 +47,7 @@
 <% content_for :content do %>
   <div class="row nmhs relative js-masonry js-infinite-scroll">
     <% @products.each do |product| %>
-      <div id="product-<%= product.id %>" class="col-sm-6 col-md-3 phs mtm fade-a <%= " active" if current_cart.has_product?(product) %> js-masonry-item js-product-display" data-id="<%= product.id %>" data-active="<%= current_cart.has_product?(product) %>" data-in-cart="<%= current_cart.has_product?(product) %>">
+      <div id="product-<%= product.id %>" class="col-sm-6 col-md-4 col-lg-3 phs mtm fade-a <%= " active" if current_cart.has_product?(product) %> js-masonry-item js-product-display" data-id="<%= product.id %>" data-active="<%= current_cart.has_product?(product) %>" data-in-cart="<%= current_cart.has_product?(product) %>">
         <div class="product-display bram no-overflow no-select">
           <%= link_to product.photo.url(:original), class: "js-lightbox" do %>
             <%= image_tag product.photo.url(:medium), class: "img-responsive" %>
@@ -56,9 +56,12 @@
             <div class="c-1 fwl">
               <%= product.name %>
             </div>
-            <div class="nmlxs clearfix">
+            <div class="c-1">
+              <%= product.dimensions %>
+            </div>
+            <div class="nmlxxxs mtxxxs clearfix">
               <% product.tags.each do |tag| %>
-                <div class="mlxs pull-left">
+                <div class="paxxxs mlxxxs bg-2 c-4 fsxxxs braxs pull-left pointer js-product-tag" data-id="<%= tag.id %>">
                   <%= tag.name %>
                 </div>
               <% end %>

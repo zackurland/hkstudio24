@@ -30,3 +30,6 @@ $(document).ready ->
     q["q"] = categories
     window.location = "#{location.protocol}//#{location.host}#{location.pathname}?#{$.param(q)}"
 
+  $("body").on "click", ".js-product-tag", ->
+    $("#tag-#{$(@).data("id")}").click()
+

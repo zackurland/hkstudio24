@@ -76,7 +76,7 @@
           <div class="col-sm-9 phxs">
             <div class="row nmhxs">
               <% category.tags.each do |tag| %>
-                <div class="col-sm-3 phxs mtxs">
+                <div class="col-sm-4 phxs mtxs">
                   <%= f.check_box :tag_ids, { :multiple => true }, tag.id, nil %> <%= tag.name %>
                 </div>
               <% end %>

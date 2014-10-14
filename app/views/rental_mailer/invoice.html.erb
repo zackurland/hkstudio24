@@ -53,8 +53,8 @@
         </tr>
       </tbody>
     </table>
-    <table border="1" cellpadding="1" cellspacing="0" style="width: 600px;margin-top: 40px;background-color: #DDDDDD;">
-      <thead>
+    <table border="1" cellpadding="1" cellspacing="0" style="width: 600px;margin-top: 40px;">
+      <thead style="background-color: #DDDDDD;">
         <tr>
           <th>
             Invoice Date
@@ -76,7 +76,7 @@
             <%= Date.today.strftime("%m/%d/%y") %>
           </td>
           <td>
-            0
+            <%= @rental.po_number %>
           </td>
           <td style="text-align: center;">
             <%= @rental.production_name %>
@@ -87,8 +87,8 @@
         </tr>
       </tbody>
     </table>
-    <table border="1" cellpadding="1" cellspacing="0" style="width: 600px;background-color: #DDDDDD;">
-      <thead>
+    <table border="1" cellpadding="1" cellspacing="0" style="width: 600px;">
+      <thead style="background-color: #DDDDDD;">
         <tr>
           <th>
             Line

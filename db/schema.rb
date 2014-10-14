@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010190758) do
+ActiveRecord::Schema.define(version: 20141014175737) do
 
   create_table "assets", force: true do |t|
     t.string   "type"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20141010190758) do
     t.string   "your_phone_number"
     t.string   "your_email"
     t.boolean  "filled_out_by_designer"
+    t.string   "po_number"
   end
 
   create_table "tags", force: true do |t|

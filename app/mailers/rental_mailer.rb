@@ -1,5 +1,5 @@
 class RentalMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "noreply@hkstudiorentals.com"
 
   def invoice(rental)
     @rental = rental

@@ -9,71 +9,87 @@
 <% end %>
 <%= form_for [:admin, @rental] do |f| %>
   <%= f.hidden_field :status, value: "approved" %>
-  <table>
-    <tr>
-      <td>
-        Start Date
-      </td>
-      <td class="pls">
-        <input type="text" class="phxxs dvs bss bwas bc-accent bras full-width js-datepicker" value="<%= @rental.start_date.strftime("%m/%d/%Y") %>"/>
-        <%= f.hidden_field :start_date %>
-      </td>
-    </tr>
-    <tr>
-      <td class="pts">
-        End Date
-      </td>
-      <td class="pts pls">
-        <input type="text" class="phxxs dvs bss bwas bc-accent bras full-width js-datepicker" value="<%= @rental.end_date.strftime("%m/%d/%Y") %>"/>
-        <%= f.hidden_field :end_date %>
-      </td>
-    </tr>
-  </table>
-  <table class="mts">
-    <tr>
-      <th class="pbxs">
-        Item
-      </th>
-      <th class="pbxs pls">
-      </th>
-      <th class="pbxs pls">
-        Price for total rental period
-      </th>
-      <th class="pbxs pls">
-      </th>
-    </tr>
-    <%= f.fields_for :items do |items_fields| %>
-      <tr class="js-admin-rental-item" data-price="<%= items_fields.object.price.to_f %>">
-        <td class="pbm">
-          <%= image_tag items_fields.object.product.photo.url(:thumbnail), class: "img-responsive bras" %>
-        </td>
-        <td class="pbm pls">
-          <%= items_fields.object.product.name %>
-        </td>
-        <td class="pbm pls">
-          <%= items_fields.text_field :price, value: items_fields.object.price || items_fields.object.product.price, class: "paxxs bras bss bwas bc-accent js-admin-rental-item-price" %>
-        </td>
-        <td class="pbm pls">
-          <i class="fa fa-times c-accent fsm pointer js-admin-rental-item-remove"></i>
-        </td>
-      </tr>
-    <% end %>
-    <tr>
-      <td>
-      </td>
-      <td class="pls fsm">
-        Total
-      </td>
-      <td class="pls fsm js-admin-rental-total"><%= number_to_currency @rental.total %></td>
-      <td>
-      </td>
-    </tr>
-  </table>
-  <div class="mtm">
-    <% if @rental.pending? %>
-      <%= link_to "Reject", "/", class: "btn btn-danger bras" %> <%= f.submit "Approve", class: "btn btn-success bras" %>
-    <% else %>
-      <%= f.submit class: "btn btn-success bras" %>
-    <% end %>
+  <div class="row nmhxs">
+    <div class="col-lg-8 phxs">
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            Start Date
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <input type="text" class="paxs full-width js-datepicker" value="<%= @rental.start_date.strftime("%m/%d/%Y") %>"/>
+          <%= f.hidden_field :start_date %>
+        </div>
+      </div>
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            End Date
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <input type="text" class="paxs full-width js-datepicker" value="<%= @rental.end_date.strftime("%m/%d/%Y") %>"/>
+          <%= f.hidden_field :end_date %>
+        </div>
+      </div>
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            PO Number
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <%= f.text_field :po_number, class: "paxs full-width" %>
+        </div>
+      </div>
+      <table class="mts full-width">
+        <tr>
+          <th class="pbxs">
+            Item
+          </th>
+          <th class="pbxs pls">
+          </th>
+          <th class="pbxs pls">
+            Price for total rental period
+          </th>
+          <th class="pbxs pls">
+          </th>
+        </tr>
+        <%= f.fields_for :items do |items_fields| %>
+          <tr class="js-admin-rental-item" data-price="<%= items_fields.object.price.to_f %>">
+            <td class="pbm">
+              <%= image_tag items_fields.object.product.photo.url(:thumbnail), class: "img-responsive bras" %>
+            </td>
+            <td class="pbm pls">
+              <%= items_fields.object.product.name %>
+            </td>
+            <td class="pbm pls">
+              <%= items_fields.text_field :price, value: items_fields.object.price || items_fields.object.product.price, class: "paxxs js-admin-rental-item-price" %>
+            </td>
+            <td class="pbm pls">
+              <i class="fa fa-times c-accent fsm pointer js-admin-rental-item-remove"></i>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>
+          </td>
+          <td class="pls fsm">
+            Total
+          </td>
+          <td class="pls fsm js-admin-rental-total"><%= number_to_currency @rental.total %></td>
+          <td>
+          </td>
+        </tr>
+      </table>
+      <div class="mtm">
+        <% if @rental.pending? %>
+          <%= link_to "Reject", "/", class: "btn btn-danger bras" %> <%= f.submit "Approve", class: "btn btn-success bras" %>
+        <% else %>
+          <%= f.submit class: "btn btn-success bras" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 <% end %>

@@ -55,6 +55,8 @@ Rails.application.routes.draw do
   get "/cart/checkout", to: "carts#checkout"
 
   get "/about", to: "home#about"
+  get "/contact", to: "contacts#new"
+  resource :contacts
 
   root to: "products#index"
 end

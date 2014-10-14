@@ -87,7 +87,7 @@
         <% if @rental.pending? %>
           <%= link_to "Reject", "/", class: "btn btn-danger bras" %> <%= f.submit "Approve", class: "btn btn-success bras" %>
         <% else %>
-          <%= f.submit class: "btn btn-success bras" %>
+          <%= f.submit "Approve", class: "btn btn-success bras" %>
         <% end %>
       </div>
     </div>

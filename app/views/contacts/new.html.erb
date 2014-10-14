@@ -1,0 +1,83 @@
+<%= content_for :navigation do %>
+  <div class="c-accent fsxs text-center">
+    <%= link_to root_path do %>
+      <table>
+        <tr>
+          <td>
+            <i class="fa fa-caret-left fsm"></i>
+          </td>
+          <td class="plxs">
+            Back to Jewelry Feed
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+<% end %>
+<%= content_for :content do %>
+  <div class="row nmhxs">
+    <div class="col-lg-6 phxs mtl">
+      <% if flash[:notice].present? %>
+        <div class="c-green"><%= flash[:notice] %></div>
+      <% end %>
+      <div class="fsxs fwl">CONTACT</div>
+      <div class="mbm">
+        <% if @contact.errors.any? %>
+          <div class="paxs mtxs bss bwas bc-1">
+            <% @contact.errors.full_messages.each do |message| %>
+              <div class="mtxxxs-plus c-red">
+                <%= message %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <%= form_for @contact do |f| %>
+        <%= f.hidden_field :to, value: "hkstudiorentals@hkstudiorentals.com" %>
+        <div class="row nmhxs mts-plus">
+          <div class="col-lg-4 phxs mtxxxxs lhm">
+            Name
+          </div>
+          <div class="col-lg-8 phxs mtxxxxs">
+            <%= f.text_field :name, class: "dvm phxs bss bwas bc-accent bram full-width" %>
+          </div>
+        </div>
+        <div class="row nmhxs mts-plus">
+          <div class="col-lg-4 phxs mtxxxxs lhm">
+            Email
+          </div>
+          <div class="col-lg-8 phxs mtxxxxs">
+            <%= f.text_field :email, class: "dvm phxs bss bwas bc-accent bram full-width" %>
+          </div>
+        </div>
+        <div class="row nmhxs mts-plus">
+          <div class="col-lg-4 phxs mtxxxxs lhm">
+            Company
+          </div>
+          <div class="col-lg-8 phxs mtxxxxs">
+            <%= f.text_field :company, class: "dvm phxs bss bwas bc-accent bram full-width" %>
+          </div>
+        </div>
+        <div class="row nmhxs mts-plus">
+          <div class="col-lg-4 phxs mtxxxxs lhm">
+            Website (Optional)
+          </div>
+          <div class="col-lg-8 phxs mtxxxxs">
+            <%= f.text_field :website, class: "dvm phxs bss bwas bc-accent bram full-width" %>
+          </div>
+        </div>
+        <div class="row nmhxs mts-plus">
+          <div class="col-lg-4 phxs mtxxxxs lhm">
+            Message
+          </div>
+          <div class="col-lg-8 phxs mtxxxxs">
+            <%= f.text_area :message, class: "paxs dvxxxl bss bwas bc-accent bram full-width" %>
+          </div>
+        </div>
+        <div class="mtxs text-right">
+          <%= f.submit "SEND", class: "btn btn-primary bras", data: { disable_with: "submitting" } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+<div class="fsm">
+  Edit <%= @editable.name %>
+</div>
+<% if @editable.errors.any? %>
+  <% @editable.errors.full_messages.each do |message| %>
+    <div class="mtxxxs-plus c-red">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+<%= form_for [:admin, @editable] do |f| %>
+  <div class="row nmhxs">
+    <div class="col-lg-8 phxs">
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            Text
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <%= f.text_area :text, class: "paxs dvxxxxl bss bwas bc-4 full-width" %>
+        </div>
+      </div>
+      <%= f.submit class: "btn btn-primary mtm-plus full-width" %>
+    </div>
+  </div>
+<% end %>

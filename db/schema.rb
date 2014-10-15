@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014175737) do
+ActiveRecord::Schema.define(version: 20141015153436) do
 
   create_table "assets", force: true do |t|
     t.string   "type"
@@ -45,6 +45,11 @@ ActiveRecord::Schema.define(version: 20141014175737) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "display_index"
+  end
+
+  create_table "editables", force: true do |t|
+    t.string "name"
+    t.text   "text"
   end
 
   create_table "products", force: true do |t|

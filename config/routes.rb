@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         get :send_invoice
       end
     end
+    resources :editables
   end
 
   resources :products

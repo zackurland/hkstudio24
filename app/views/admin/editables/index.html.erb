@@ -1,0 +1,22 @@
+<div class="row nmhxs">
+  <div class="col-lg-8 phxs">
+    <table class="row nmhxs mtm full-width">
+      <tbody>
+        <% @editables.each_with_index do |editable, index| %>
+          <tr class="<%= index % 2 == 0 ? " bg-13" : " bg-12" %>">
+            <td class="plxxxs prxxxs pvxs fwl">
+              <%= editable.name %>
+            </td>
+            <td class="phxxxs pvxs">
+              <div class="pull-right">
+                <%= link_to edit_admin_editable_path(editable), class: "btn btn-primary" do %>
+                  <i class="fa fa-edit"></i> <span class="hidden-xs">Edit</span>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

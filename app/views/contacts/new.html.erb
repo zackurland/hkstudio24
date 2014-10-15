@@ -33,7 +33,7 @@
         <% end %>
       </div>
       <%= form_for @contact do |f| %>
-        <%= f.hidden_field :to, value: "helene@hkstudiorentals.com" %>
+        <%= f.hidden_field :to, value: Editable.where(name: "Email").last.text %>
         <div class="row nmhxs mts-plus">
           <div class="col-lg-4 phxs mtxxxxs lhm">
             Name

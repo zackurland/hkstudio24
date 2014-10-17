@@ -133,6 +133,46 @@
             <%= number_to_currency @rental.total %>
           </td>
         </tr>
+        <% if @rental.discount > 0 %>
+          <tr>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              Discount <%= "#{@rental.discount_percentage}%" %>:
+            </td>
+            <td style="text-align: right;">
+              -<%= number_to_currency @rental.discount %>
+            </td>
+          </tr>
+        <% end %>
+        <% if @rental.tax %>
+          <tr>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              Tax:
+            </td>
+            <td style="text-align: right;">
+              <%= number_to_currency @rental.tax %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+            Total Due:
+          </td>
+          <td style="text-align: right;">
+            <%= number_to_currency @rental.total_with_additions %>
+          </td>
+        </tr>
       </tbody>
     </table>
   </body>

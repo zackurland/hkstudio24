@@ -1,7 +1,25 @@
 calculateTotal = ->
   total = 0.0
-  $(".js-admin-rental-item").each ->
+  $(".js-admin-rental-item:visible").each ->
     total += parseFloat($(@).data("price"), 10)
+
+  discountPercentage = parseInt($(".js-admin-rental-discount-percentage").val(), 10)
+  if discountPercentage > 0
+    discount = total * discountPercentage / 100
+    total -= discount
+    $(".js-admin-rental-discount").html("- $#{discount.toFixed(2)}")
+    $(".js-admin-rental-discount-row").removeClass("hide")
+  else
+    $(".js-admin-rental-discount-row").addClass("hide")
+
+  if $(".js-admin-rental-include-tax").is(":checked")
+    tax = total * 0.09
+    total += total * 0.09
+    $(".js-admin-rental-tax").html("+ $#{tax.toFixed(2)}")
+    $(".js-admin-rental-tax-row").removeClass("hide")
+  else
+    $(".js-admin-rental-tax-row").addClass("hide")
+
   $(".js-admin-rental-total").html("$#{total.toFixed(2)}")
 
 $(document).ready ->
@@ -16,4 +34,10 @@ $(document).ready ->
     index = $(".js-admin-rental-item").index($item)
     $item.append("""<input id="rental_items_attributes_#{index}__destroy" name="rental[items_attributes][#{index}][_destroy]" type="hidden" value="1">""")
     $item.hide()
+    calculateTotal()
 
+  $(".js-admin-rental-include-tax").click ->
+    calculateTotal()
+
+  $(".js-admin-rental-discount-percentage").change ->
+    calculateTotal()

@@ -82,13 +82,13 @@
       <table class="row nmhxs full-width">
         <% @rental.items.includes(:product).each do |item| %>
           <tr>
-            <td class="col-xs-3 phxs ptm">
+            <td class="col-xs-3 phxs pvxs">
               <%= image_tag item.product.photo.url(:thumbnail), class: "img-responsive bras" %>
             </td>
-            <td class="col-xs-6 phxs ptm fsxs fwl">
+            <td class="col-xs-6 phxs pvxs fsxs fwl">
               <%= item.product.name %>
             </td>
-            <td class="col-xs-3 phxs ptm">
+            <td class="col-xs-3 phxs pvxs">
               <%= number_to_currency item.price %>
             </td>
           </tr>
@@ -97,13 +97,37 @@
           <td colspan="3" class="ptm">
           </td>
         </tr>
+        <% if @rental.discount > 0 %>
+          <tr class="bss bc-2">
+            <td class="col-xs-3 phxs pvxs">
+            </td>
+            <td class="col-xs-6 phxs pvxs fsxs fwl">
+              Discount
+            </td>
+            <td class="col-xs-3 phxs pvxs c-red">
+              - <%= number_to_currency @rental.discount %>
+            </td>
+          </tr>
+        <% end %>
+        <% if @rental.tax > 0 %>
+          <tr class="bss bc-2">
+            <td class="col-xs-3 phxs pvxs">
+            </td>
+            <td class="col-xs-6 phxs pvxs fsxs fwl">
+              Tax
+            </td>
+            <td class="col-xs-3 phxs pvxs c-green">
+              + <%= number_to_currency @rental.tax %>
+            </td>
+          </tr>
+        <% end %>
         <tr class="bss bwts bc-2">
-          <td class="col-xs-3 phxs ptm">
+          <td class="col-xs-3 phxs pvxs">
           </td>
-          <td class="col-xs-6 phxs ptm fsxs fwl">
+          <td class="col-xs-6 phxs pvxs fsxs fwl">
             Total
           </td>
-          <td class="col-xs-3 phxs ptm">
+          <td class="col-xs-3 phxs pvxs">
             <%= number_to_currency @rental.total %>
           </td>
         </tr>

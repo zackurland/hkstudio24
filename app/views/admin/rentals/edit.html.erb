@@ -43,6 +43,26 @@
           <%= f.text_field :po_number, class: "paxs full-width" %>
         </div>
       </div>
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            Discount %
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <%= f.number_field :discount_percentage, value: @discount_percentage || 0, min: 0, max: 100, class: "paxs full-width js-admin-rental-discount-percentage" %>
+        </div>
+      </div>
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            Include 9% Tax
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <%= f.check_box :include_tax, class: "js-admin-rental-include-tax" %>
+        </div>
+      </div>
       <table class="mts full-width">
         <tr>
           <th class="pbxs">
@@ -72,13 +92,33 @@
             </td>
           </tr>
         <% end %>
+        <tr class="<%= "hide " unless @rental.discount > 0 %>js-admin-rental-discount-row">
+          <td>
+          </td>
+          <td class="pls fsm">
+            Discount
+          </td>
+          <td class="pls c-red fsm text-right js-admin-rental-discount">- <%= number_to_currency @rental.discount %></td>
+          <td>
+          </td>
+        </tr>
+        <tr class="<%= "hide " unless @rental.tax > 0 %>js-admin-rental-tax-row">
+          <td>
+          </td>
+          <td class="pls fsm">
+            Tax
+          </td>
+          <td class="pls c-green fsm text-right js-admin-rental-tax">+ <%= number_to_currency @rental.tax %></td>
+          <td>
+          </td>
+        </tr>
         <tr>
           <td>
           </td>
           <td class="pls fsm">
             Total
           </td>
-          <td class="pls fsm js-admin-rental-total"><%= number_to_currency @rental.total %></td>
+          <td class="pls fsm text-right js-admin-rental-total"><%= number_to_currency @rental.total %></td>
           <td>
           </td>
         </tr>

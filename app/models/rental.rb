@@ -32,6 +32,14 @@ class Rental < ActiveRecord::Base
     "#{start_date.strftime("%m/%d/%y")} - #{end_date.strftime("%m/%d/%y")}"
   end
 
+  def discount
+    if discount_percentage.to_i > 0
+      total * discount_percentage.to_i / 100
+    else
+      Money.new(0)
+    end
+  end
+
   def extract_items(cart)
     cart.items.each do |item|
       RentalItem.create(rental: self, status: "pending", product: item.product, start_date: start_date, end_date: end_date)
@@ -51,11 +59,32 @@ class Rental < ActiveRecord::Base
     status == "rejected"
   end
 
+  def tax
+    if include_tax?
+      total * 0.09
+    else
+      Money.new(0)
+    end
+  end
+
   def total
+    unless defined? @total
+      @total = Money.new(0)
+      items.each do |item|
+        @total += item.price || item.product.price || Money.new(0)
+      end
+    end
+    @total
+  end
+
+  def total_with_additions
     total = Money.new(0)
     items.each do |item|
       total += item.price || item.product.price || Money.new(0)
     end
+
+    total -= discount
+    total += tax
     total
   end
 

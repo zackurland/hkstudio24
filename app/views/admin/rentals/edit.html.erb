@@ -50,7 +50,7 @@
           </div>
         </div>
         <div class="col-sm-9 phxs">
-          <%= f.number_field :discount_percentage, value: @discount_percentage || 0, min: 0, max: 100, class: "paxs full-width js-admin-rental-discount-percentage" %>
+          <%= f.number_field :discount_percentage, value: @rental.discount_percentage || 0, min: 0, max: 100, class: "paxs full-width js-admin-rental-discount-percentage" %>
         </div>
       </div>
       <div class="row nmhxs mtm-plus">

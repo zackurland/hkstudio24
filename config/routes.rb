@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       end
       member do
         get :send_invoice
+        get :reject
       end
     end
     resources :editables

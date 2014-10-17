@@ -25,6 +25,12 @@ class Admin::RentalsController < AdminController
 		end
 	end
 
+	def reject
+		@rental = Rental.find(params[:id])
+		@rental.reject!
+		redirect_to admin_rental_path(@rental)
+	end
+
 	def pending
 		@pending_rentals = Rental.where(status: "pending")
 	end

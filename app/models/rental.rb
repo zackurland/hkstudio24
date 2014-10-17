@@ -55,6 +55,10 @@ class Rental < ActiveRecord::Base
     status == "pending"
   end
 
+  def reject!
+    update_attributes({status: "rejected"})
+  end
+
   def rejected?
     status == "rejected"
   end

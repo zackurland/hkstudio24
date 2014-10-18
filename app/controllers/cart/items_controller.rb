@@ -1,4 +1,6 @@
 class Cart::ItemsController < ApplicationController
+  before_action :ensure_user
+
   def add
     cart_item = CartItem.new(cart_item_params)
 
@@ -23,5 +25,12 @@ class Cart::ItemsController < ApplicationController
 
   def cart_item_params
     params.require(:item).permit(:product_id).merge({cart_id: current_cart(true).id})
+  end
+
+  def ensure_user
+    unless current_or_guest_user.persisted?
+      current_or_guest_user.save(validate: false)
+      sign_in(:user, current_or_guest_user)
+    end
   end
 end

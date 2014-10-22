@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017201855) do
+ActiveRecord::Schema.define(version: 20141020160622) do
 
   create_table "assets", force: true do |t|
     t.string   "type"
@@ -55,11 +55,12 @@ ActiveRecord::Schema.define(version: 20141017201855) do
   create_table "products", force: true do |t|
     t.string   "name"
     t.string   "dimensions"
-    t.integer  "price_cents"
+    t.integer  "production_rental_price_cents"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
     t.integer  "display_index"
+    t.integer  "short_rental_price_cents"
   end
 
   create_table "products_tags", force: true do |t|
@@ -103,6 +104,7 @@ ActiveRecord::Schema.define(version: 20141017201855) do
     t.string   "po_number"
     t.integer  "discount_percentage"
     t.boolean  "include_tax"
+    t.integer  "duration_weeks"
   end
 
   create_table "tags", force: true do |t|

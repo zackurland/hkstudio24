@@ -1,3 +1,6 @@
+<%= link_to admin_rental_path(@rental), class: "c-accent" do %>
+  <i class="fa fa-caret-left"></i> Back to Rental
+<% end %>
 <% if @rental.errors.any? %>
   <div class="mbxs">
     <% @rental.errors.full_messages.each do |message| %>
@@ -9,7 +12,7 @@
 <% end %>
 <%= form_for [:admin, @rental] do |f| %>
   <%= f.hidden_field :status, value: "approved" %>
-  <div class="row nmhxs">
+  <div class="row nmhxs mtm">
     <div class="col-lg-8 phxs">
       <div class="row nmhxs mtm-plus">
         <div class="col-sm-3 phxs">
@@ -77,7 +80,7 @@
           </th>
         </tr>
         <%= f.fields_for :items do |items_fields| %>
-          <tr class="js-admin-rental-item" data-price="<%= items_fields.object.price.to_f %>">
+          <tr class="js-admin-rental-item" data-price="<%= (items_fields.object.price || items_fields.object.suggested_price).to_f %>">
             <td class="pbm">
               <%= image_tag items_fields.object.product.photo.url(:thumbnail), class: "img-responsive bras" %>
             </td>
@@ -85,7 +88,7 @@
               <%= items_fields.object.product.name %>
             </td>
             <td class="pbm pls">
-              <%= items_fields.text_field :price, value: items_fields.object.price || items_fields.object.product.price, class: "paxxs js-admin-rental-item-price" %>
+              <%= items_fields.text_field :price, value: items_fields.object.price || items_fields.object.suggested_price, class: "paxxs js-admin-rental-item-price" %>
             </td>
             <td class="pbm pls">
               <i class="fa fa-times c-accent fsm pointer js-admin-rental-item-remove"></i>
@@ -118,7 +121,7 @@
           <td class="pls fsm">
             Total
           </td>
-          <td class="pls fsm text-right js-admin-rental-total"><%= number_to_currency @rental.total %></td>
+          <td class="pls fsm text-right js-admin-rental-total"><%= number_to_currency @rental.total_with_additions %></td>
           <td>
           </td>
         </tr>

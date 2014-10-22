@@ -40,6 +40,14 @@ class Rental < ActiveRecord::Base
     end
   end
 
+  def duration_type
+    if duration_weeks == 2
+      "short_rental"
+    else
+      "production_rental"
+    end
+  end
+
   def extract_items(cart)
     cart.items.each do |item|
       RentalItem.create(rental: self, status: "pending", product: item.product, start_date: start_date, end_date: end_date)
@@ -75,21 +83,17 @@ class Rental < ActiveRecord::Base
     unless defined? @total
       @total = Money.new(0)
       items.each do |item|
-        @total += item.price || item.product.price || Money.new(0)
+        @total += item.price || item.suggested_price || Money.new(0)
       end
     end
     @total
   end
 
   def total_with_additions
-    total = Money.new(0)
-    items.each do |item|
-      total += item.price || item.product.price || Money.new(0)
-    end
-
-    total -= discount
-    total += tax
-    total
+    subtotal = total
+    subtotal -= discount
+    subtotal += tax
+    subtotal
   end
 
   private

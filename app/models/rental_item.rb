@@ -4,6 +4,10 @@ class RentalItem < ActiveRecord::Base
   belongs_to :rental
   belongs_to :product
 
+  def suggested_price
+    product.send(:"#{rental.duration_type}_price")
+  end
+
   private
 
   def rental_approved?

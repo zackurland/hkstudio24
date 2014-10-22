@@ -11,15 +11,33 @@
       </tr>
     </table>
     <div class="row nmhxs">
-      <div class="col-sm-6 phxs mtm">
+      <div class="col-sm-4 phxs mtm">
         <%= image_tag @product.photo.url(:medium), class: "img-responsive bss bwam bc-12" %>
       </div>
-      <div class="col-sm-6 phxs mtm">
-        <div class="">
-          <%= number_to_currency @product.price %>
+      <div class="col-sm-8 phxs mtm">
+        <div class="row nmhxs mtxs-plus">
+          <div class="col-xs-6 phxs">
+            <b>Production Rental Price</b>
+          </div>
+          <div class="col-xs-6 phxs text-right">
+            <%= number_to_currency @product.production_rental_price %>
+          </div>
         </div>
-        <div class="">
-          <%= @product.dimensions.presence %>
+        <div class="row nmhxs mtxs-plus">
+          <div class="col-xs-6 phxs">
+            <b>Short Rental Price</b>
+          </div>
+          <div class="col-xs-6 phxs text-right">
+            <%= number_to_currency @product.short_rental_price %>
+          </div>
+        </div>
+        <div class="row nmhxs mtxs-plus">
+          <div class="col-xs-6 phxs">
+            <b>Dimensions</b>
+          </div>
+          <div class="col-xs-6 phxs text-right">
+            <%= @product.dimensions.presence %>
+          </div>
         </div>
         <% if @product.tags.any? %>
           <div class="">

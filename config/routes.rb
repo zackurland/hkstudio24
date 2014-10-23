@@ -24,9 +24,11 @@ Rails.application.routes.draw do
       end
       member do
         get :send_invoice
+        get :send_agreement
         get :reject
       end
     end
+    resources :agreements
     resources :editables
   end
 

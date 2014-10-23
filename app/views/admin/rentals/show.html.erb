@@ -12,10 +12,31 @@
         <% end %>
       </div>
     </div>
+    <% if flash[:notice].present? %>
+      <div class="mts">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
     <div class="mts">
       <div class="fss">
         Status: <span class="<%= @rental.status == "rejected" ? "c-red" : "c-green" %>"><%= @rental.status %></span>
       </div>
+    </div>
+    <div class="mts">
+      <% agreement = Agreement.where(duration_weeks: @rental.duration_weeks).last %>
+      <% if agreement && agreement.pdf %>
+        <% if @rental.pdf && @rental.pdf.attachment? %>
+          <div>
+            <%= @rental.pdf.attachment_file_name %>
+          </div>
+        <% else %>
+          <div>
+            <%= link_to "Send #{@rental.duration_type_name} Agreement", "#", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      <% else %>
+        <%= link_to "Upload #{@rental.duration_type_name} Agreement", edit_admin_agreement_path(agreement) %>
+      <% end %>
     </div>
     <div class="mts">
       <div class="fsl">

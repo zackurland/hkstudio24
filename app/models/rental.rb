@@ -1,5 +1,6 @@
 class Rental < ActiveRecord::Base
   has_many :items, class_name: "RentalItem"
+  has_one :pdf, as: :assetable
 
   validates :production_name, :production_company, :billing_name, :billing_address, :billing_city, :billing_state, :billing_country, :billing_zip_code,
   :designer_name, :designer_email, :designer_phone_number, presence: true
@@ -45,6 +46,14 @@ class Rental < ActiveRecord::Base
       "short_rental"
     else
       "production_rental"
+    end
+  end
+
+  def duration_type_name
+    if duration_weeks == 2
+      "Short Rental"
+    else
+      "Production Rental"
     end
   end
 

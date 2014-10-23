@@ -1,0 +1,24 @@
+<div class="fsm">
+  Edit <%= @agreement.name %>
+</div>
+<div class="mtm">
+  <%= form_for [:admin, @agreement] do |f| %>
+    <div class="row nmhxs">
+      <div class="col-lg-8 phxs">
+        <div>
+          <% if @agreement.pdf && @agreement.pdf.attachment? %>
+            <div>
+              <%= link_to "Current Agreement", @agreement.pdf.url %>
+            </div>
+          <% end %>
+          <%= f.fields_for :pdf do |pdf_fields| %>
+            <%= pdf_fields.file_field :attachment %>
+          <% end %>
+        </div>
+        <div class="mtm">
+          <%= f.submit class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

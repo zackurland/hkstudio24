@@ -46,13 +46,21 @@ class Admin::RentalsController < AdminController
 	def send_invoice
 		@rental = Rental.find(params[:id])
 		RentalMailer.invoice(@rental).deliver
+		flash[:notice] = "Invoice sent."
+		redirect_to admin_rental_path(@rental)
+	end
+
+	def send_agreement
+		@rental = Rental.find(params[:id])
+		RentalMailer.agreement(@rental).deliver
+		flash[:notice] = "#{@rental.duration_type_name} agreement Sent."
 		redirect_to admin_rental_path(@rental)
 	end
 
 	private
 
 	def rental_params
-		params.require(:rental).permit(:start_date, :end_date, :status, :discount_percentage, :include_tax, items_attributes: [:id, :price, :_destroy])
+		params.require(:rental).permit(:start_date, :end_date, :duration_weeks, :status, :discount_percentage, :include_tax, items_attributes: [:id, :price, :_destroy])
 	end
 
 	def navigation

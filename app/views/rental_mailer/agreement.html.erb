@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body style="font-family: Helvetica;">
+    <div>
+      Hey <%= @rental.contact_name %>
+    </div>
+    <div style="margin-top: 15px;">
+      Here is your rental agreement. Please sign and return to <%= Editable.where(name: "email").last.text %>
+    </div>
+    <div style="margin-top: 15px;">
+      Thanks,
+    </div>
+    <div>
+      HK STUDIO
+    </div>
+  </body>
+</html>

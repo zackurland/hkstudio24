@@ -1,0 +1,21 @@
+<div class="row nmhxs">
+  <div class="col-lg-8 phxs">
+    <table class="full-width">
+      <tr>
+        <td class="fsxl">
+          <%= @agreement.name %>
+        </td>
+        <td class="text-right">
+          <%= link_to "Edit", edit_admin_agreement_path(@agreement), class: "btn btn-primary" %>
+        </td>
+      </tr>
+    </table>
+    <div class="mtm">
+      <% if @agreement.pdf && @agreement.pdf.attachment? %>
+        <%= link_to "View Agreement", @agreement.pdf.attachment.url, class: "c-accent", target: "_blank" %>
+      <% else %>
+        <%= link_to "Upload Agreement", edit_admin_agreement_path(@agreement), class: "c-accent" %>
+      <% end %>
+    </div>
+  </div>
+</div>

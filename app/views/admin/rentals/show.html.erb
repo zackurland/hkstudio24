@@ -27,7 +27,7 @@
       <% if agreement && agreement.pdf %>
         <% if @rental.pdf && @rental.pdf.attachment? %>
           <div>
-            <%= @rental.pdf.attachment_file_name %>
+            <%= link_to @rental.pdf.attachment_file_name, @rental.pdf.url, class: "c-accent", target: "_blank" %>
           </div>
         <% else %>
           <div>

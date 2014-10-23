@@ -13,7 +13,9 @@ class Admin::RentalsController < AdminController
 
 	def edit
 		@rental = Rental.find(params[:id])
-		@rental.build_pdf
+		if !@rental.pdf
+			@rental.build_pdf
+		end
 	end
 
 	def update

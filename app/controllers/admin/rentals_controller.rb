@@ -52,7 +52,8 @@ class Admin::RentalsController < AdminController
 
 	def send_agreement
 		@rental = Rental.find(params[:id])
-		RentalMailer.agreement(@rental).deliver
+		pdf = Agreement.where(duration_weeks: @rental.duration_weeks).last.pdf.url
+		RentalMailer.agreement(@rental, pdf).deliver
 		flash[:notice] = "#{@rental.duration_type_name} agreement Sent."
 		redirect_to admin_rental_path(@rental)
 	end

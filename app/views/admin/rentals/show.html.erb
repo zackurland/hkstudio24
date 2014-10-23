@@ -26,6 +26,9 @@
       <% agreement = Agreement.where(duration_weeks: @rental.duration_weeks).last %>
       <% if agreement && agreement.pdf %>
         <% if @rental.pdf && @rental.pdf.attachment? %>
+          <div class="fsl">
+            Rental Agreement
+          </div>
           <div>
             <%= link_to @rental.pdf.attachment_file_name, @rental.pdf.url, class: "c-accent", target: "_blank" %>
           </div>

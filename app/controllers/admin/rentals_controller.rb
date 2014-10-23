@@ -13,6 +13,7 @@ class Admin::RentalsController < AdminController
 
 	def edit
 		@rental = Rental.find(params[:id])
+		@rental.build_pdf
 	end
 
 	def update
@@ -61,7 +62,7 @@ class Admin::RentalsController < AdminController
 	private
 
 	def rental_params
-		params.require(:rental).permit(:start_date, :end_date, :duration_weeks, :status, :discount_percentage, :include_tax, items_attributes: [:id, :price, :_destroy])
+		params.require(:rental).permit(:start_date, :end_date, :duration_weeks, :status, :discount_percentage, :include_tax, items_attributes: [:id, :price, :_destroy], pdf_attributes: [:id, :attachment])
 	end
 
 	def navigation

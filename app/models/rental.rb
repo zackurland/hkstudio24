@@ -9,7 +9,7 @@ class Rental < ActiveRecord::Base
 
   validate :items_have_prices, if: :approved?
 
-  accepts_nested_attributes_for :items, allow_destroy: true
+  accepts_nested_attributes_for :items, :pdf, allow_destroy: true
 
   validates :start_date, :end_date, presence: true
 

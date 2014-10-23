@@ -31,7 +31,7 @@
           </div>
         <% else %>
           <div>
-            <%= link_to "Send #{@rental.duration_type_name} Agreement", "#", class: "btn btn-primary" %>
+            <%= link_to "Send #{@rental.duration_type_name} Agreement", send_agreement_admin_rental_path, class: "btn btn-primary" %>
           </div>
         <% end %>
       <% else %>

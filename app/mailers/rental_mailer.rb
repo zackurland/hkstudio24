@@ -8,7 +8,8 @@ class RentalMailer < ActionMailer::Base
 
   def agreement(rental, pdf_url)
     @rental = rental
-    attachments["hkstudio_rental_agreement_#{1000 + @rental.id}.pdf"] = File.read(pdf_url)
+    pdf = open(pdf_url)
+    attachments["hkstudio_rental_agreement_#{1000 + @rental.id}.pdf"] = pdf.read
     mail(to: @rental.contact_email, subject: "HK STUDIO Rental Agreement")
   end
 end

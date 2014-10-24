@@ -15,12 +15,11 @@
   </div>
 <% end %>
 <%= content_for :content do %>
-  <div class="mtl">
-    <div class="c-2">
-      Thank you for requesting to rent from HK Studio. We will contact you shortly about your order.
-    </div>
-    <div class="mtxs">
-      <%= link_to "Continue Browsing...", root_path, class: "c-accent" %>
+  <div class="row nmhxs">
+    <div class="col-sm-10 phxs">
+      <div id="terms" class="mtl">
+        <%= Editable.where(name: "Terms").last.text.html_safe %>
+      </div>
     </div>
   </div>
 <% end %>

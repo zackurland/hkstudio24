@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   namespace :admin do
+    root to: "products#index"
     resources :products do
       collection do
         post :reorder
@@ -59,6 +60,7 @@ Rails.application.routes.draw do
   get "/cart/checkout", to: "carts#checkout"
 
   get "/about", to: "home#about"
+  get "/terms", to: "home#terms"
   get "/contact", to: "contacts#new"
   resource :contacts
 

@@ -1,8 +1,17 @@
 class Admin::ProductsController < AdminController
   before_action :navigation
 
+  def active
+    @products = Product.active.order(:display_index).paginate(page: params[:page], per_page: 50)
+  end
+
+  def inactive
+    @products = Product.inactive.order(:display_index).paginate(page: params[:page], per_page: 50)
+  end
+
   def index
-    @products = Product.order(:display_index).paginate(page: params[:page], per_page: 50)
+    @active_products_count = Product.active.count
+    @inactive_products_count = Product.inactive.count
   end
 
   def new
@@ -62,7 +71,7 @@ class Admin::ProductsController < AdminController
   private
 
   def product_params
-    params.require(:product).permit(:name, :dimensions, :production_rental_price, :short_rental_price, photo_attributes: [:id, :attachment], tag_ids: [])
+    params.require(:product).permit(:active, :name, :dimensions, :production_rental_price, :short_rental_price, photo_attributes: [:id, :attachment], tag_ids: [])
   end
 
   def navigation

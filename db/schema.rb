@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027222053) do
+ActiveRecord::Schema.define(version: 20141027232437) do
 
   create_table "agreements", force: true do |t|
     t.string  "name"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20141027222053) do
     t.text     "description"
     t.integer  "display_index"
     t.integer  "short_rental_price_cents"
+    t.boolean  "active",                        default: false
   end
 
   create_table "products_tags", force: true do |t|

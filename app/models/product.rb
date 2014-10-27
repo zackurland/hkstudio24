@@ -8,4 +8,7 @@ class Product < ActiveRecord::Base
   validates :name, :photo, presence: true
 
   accepts_nested_attributes_for :photo
+
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
 end

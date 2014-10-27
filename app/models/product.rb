@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
-  monetize :production_rental_price_cents
-  monetize :short_rental_price_cents
+  monetize :production_rental_price_cents, allow_nil: true
+  monetize :short_rental_price_cents, allow_nil: true
 
   has_one :photo, as: :assetable
   has_and_belongs_to_many :tags

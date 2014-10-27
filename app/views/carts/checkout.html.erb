@@ -112,7 +112,7 @@
                 <%= f.country_select(:billing_country, ["United States of America"], { prompt: "Country" }, { id: "billing-country", class: "dvm full-width bras bss bwas bc-accent js-country-select-with-state", data: { states_target: "#billing-state" } } ) %>
               </div>
             </div>
-            <div class="<%= "invisible " unless @rental.billing_country.present? %>js-state-wrapper">
+            <div class="<%= "hide " unless @rental.billing_country.present? %>js-state-wrapper">
               <div class="row nmhs mtxs">
                 <div class="col-sm-4 phs mtxxxs">
                   <div class="c-2">

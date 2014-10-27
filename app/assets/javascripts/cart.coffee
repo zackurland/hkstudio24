@@ -41,16 +41,21 @@ $(document).ready ->
     $(".js-cart-item").removeClass("active")
     $("#cart-error").addClass("hide")
     e.preventDefault()
-    $.ajax
-      type: "GET"
-      url: "/cart/check_availabilities"
-    .success (data) ->
-      unavailable = false
-      for item in data.items
-        if !item.available
-          unavailable = true
-          $("#cart-item-#{item.id}").addClass("active")
-      if unavailable
-        $("#cart-error").removeClass("hide")
-      else
-        window.location = $link.attr("href")
+    valid = true
+    $(".js-cart-validate").each ->
+      if $(this).val().length == 0
+        valid = false
+    if valid
+      $.ajax
+        type: "GET"
+        url: "/cart/check_availabilities"
+      .success (data) ->
+        unavailable = false
+        for item in data.items
+          if !item.available
+            unavailable = true
+            $("#cart-item-#{item.id}").addClass("active")
+        if unavailable
+          $("#cart-error").removeClass("hide")
+        else
+          window.location = $link.attr("href")

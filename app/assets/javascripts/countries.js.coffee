@@ -8,5 +8,5 @@ $(document).ready ->
       $stateSelect.html("")
       for state in data.states
         $stateSelect.append("<option value=\"#{state}\">#{state}</option>")
-      $stateSelect.closest(".js-state-wrapper").removeClass("invisible")
+      $stateSelect.closest(".js-state-wrapper").removeClass("hide")
       $stateSelect.change()

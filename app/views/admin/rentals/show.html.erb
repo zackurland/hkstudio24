@@ -17,30 +17,33 @@
         <%= flash[:notice] %>
       </div>
     <% end %>
-    <div class="mts">
-      <div class="fss">
-        Status: <span class="<%= @rental.status == "rejected" ? "c-red" : "c-green" %>"><%= @rental.status %></span>
-      </div>
+    <div class="mts fss">
+      Status: <span class="<%= @rental.status == "rejected" ? "c-red" : "c-green" %>"><%= @rental.status %></span>
     </div>
-    <div class="mts">
-      <% agreement = Agreement.where(duration_weeks: @rental.duration_weeks).last %>
-      <% if agreement && agreement.pdf %>
-        <% if @rental.pdf && @rental.pdf.attachment? %>
-          <div class="fsl">
-            Rental Agreement
-          </div>
-          <div>
-            <%= link_to @rental.pdf.attachment_file_name, @rental.pdf.url, class: "c-accent", target: "_blank" %>
-          </div>
+    <div class="mts fsxs">
+      PO #: <%= @rental.po_number %></span>
+    </div>
+    <% unless @rental.rejected? %>
+      <div class="mts">
+        <% agreement = Agreement.where(duration_weeks: @rental.duration_weeks).last %>
+        <% if agreement && agreement.pdf %>
+          <% if @rental.pdf && @rental.pdf.attachment? %>
+            <div class="fsl">
+              Rental Agreement
+            </div>
+            <div>
+              <%= link_to @rental.pdf.attachment_file_name, @rental.pdf.url, class: "c-accent", target: "_blank" %>
+            </div>
+          <% else %>
+            <div>
+              <%= link_to "Send #{@rental.duration_type_name} Agreement", send_agreement_admin_rental_path, class: "btn btn-primary" %>
+            </div>
+          <% end %>
         <% else %>
-          <div>
-            <%= link_to "Send #{@rental.duration_type_name} Agreement", send_agreement_admin_rental_path, class: "btn btn-primary" %>
-          </div>
+          <%= link_to "Upload #{@rental.duration_type_name} Agreement", edit_admin_agreement_path(agreement) %>
         <% end %>
-      <% else %>
-        <%= link_to "Upload #{@rental.duration_type_name} Agreement", edit_admin_agreement_path(agreement) %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     <div class="mts">
       <div class="fsl">
         <%= @rental.production_company %>

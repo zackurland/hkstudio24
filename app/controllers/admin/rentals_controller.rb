@@ -35,15 +35,15 @@ class Admin::RentalsController < AdminController
 	end
 
 	def pending
-		@pending_rentals = Rental.where(status: "pending")
+		@pending_rentals = Rental.where(status: "pending").order(created_at: :desc).paginate(page: params[:page], per_page: 20)
 	end
 
 	def approved
-		@approved_rentals = Rental.where(status: "approved")
+		@approved_rentals = Rental.where(status: "approved").order(created_at: :desc).paginate(page: params[:page], per_page: 20)
 	end
 
 	def rejected
-		@rejected_rentals = Rental.where(status: "rejected")
+		@rejected_rentals = Rental.where(status: "rejected").order(created_at: :desc).paginate(page: params[:page], per_page: 20)
 	end
 
 	def send_invoice
@@ -64,7 +64,7 @@ class Admin::RentalsController < AdminController
 	private
 
 	def rental_params
-		params.require(:rental).permit(:start_date, :end_date, :duration_weeks, :status, :discount_percentage, :include_tax, items_attributes: [:id, :price, :_destroy], pdf_attributes: [:id, :attachment])
+		params.require(:rental).permit(:start_date, :end_date, :duration_weeks, :status, :po_number, :discount_percentage, :include_tax, items_attributes: [:id, :price, :_destroy], pdf_attributes: [:id, :attachment])
 	end
 
 	def navigation

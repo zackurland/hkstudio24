@@ -64,7 +64,7 @@ class Admin::RentalsController < AdminController
 	private
 
 	def rental_params
-		params.require(:rental).permit(:start_date, :end_date, :duration_weeks, :status, :po_number, :discount_percentage, :include_tax, items_attributes: [:id, :price, :_destroy], pdf_attributes: [:id, :attachment])
+		params.require(:rental).permit(:start_date, :end_date, :duration_weeks, :status, :po_number, :discount_percentage, :tax_percentage, :include_tax, items_attributes: [:id, :price, :_destroy], pdf_attributes: [:id, :attachment])
 	end
 
 	def navigation

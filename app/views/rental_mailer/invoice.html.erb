@@ -154,7 +154,7 @@
             <td>
             </td>
             <td>
-              Tax:
+              <%= @rental.tax_percentage.to_f %>% Tax:
             </td>
             <td style="text-align: right;">
               <%= number_to_currency @rental.tax %>
@@ -165,6 +165,7 @@
           <td>
           </td>
           <td>
+            THANK YOU
           </td>
           <td>
             Total Due:

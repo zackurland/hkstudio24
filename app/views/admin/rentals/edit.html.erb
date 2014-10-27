@@ -59,7 +59,17 @@
       <div class="row nmhxs mtm-plus">
         <div class="col-sm-3 phxs">
           <div class="pvxs">
-            Include 9% Tax
+            Tax %
+          </div>
+        </div>
+        <div class="col-sm-9 phxs">
+          <%= f.text_field :tax_percentage, value: @rental.tax_percentage || 0.0, class: "paxs full-width js-admin-rental-tax-percentage" %>
+        </div>
+      </div>
+      <div class="row nmhxs mtm-plus">
+        <div class="col-sm-3 phxs">
+          <div class="pvxs">
+            Include Tax
           </div>
         </div>
         <div class="col-sm-9 phxs">

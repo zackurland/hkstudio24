@@ -13,8 +13,9 @@ calculateTotal = ->
     $(".js-admin-rental-discount-row").addClass("hide")
 
   if $(".js-admin-rental-include-tax").is(":checked")
-    tax = total * 0.09
-    total += total * 0.09
+    taxPercentage = (parseFloat($(".js-admin-rental-tax-percentage").val(), 10) || 0) / 100
+    tax = total * taxPercentage
+    total += tax
     $(".js-admin-rental-tax").html("+ $#{tax.toFixed(2)}")
     $(".js-admin-rental-tax-row").removeClass("hide")
   else
@@ -23,6 +24,9 @@ calculateTotal = ->
   $(".js-admin-rental-total").html("$#{total.toFixed(2)}")
 
 $(document).ready ->
+  $(".js-admin-rental-tax-percentage").keyup ->
+    calculateTotal()
+
   $(".js-admin-rental-item-price").keyup ->
     $item = $(@).closest(".js-admin-rental-item")
     dollars = parseFloat($(@).val().replace(/[^0-9a-zA-Z.]/g, ""), 10) || 0

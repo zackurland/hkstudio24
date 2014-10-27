@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022205825) do
+ActiveRecord::Schema.define(version: 20141027222053) do
 
   create_table "agreements", force: true do |t|
     t.string  "name"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20141022205825) do
     t.integer  "discount_percentage"
     t.boolean  "include_tax"
     t.integer  "duration_weeks"
+    t.string   "tax_percentage"
   end
 
   create_table "tags", force: true do |t|

@@ -82,7 +82,7 @@ class Rental < ActiveRecord::Base
 
   def tax
     if include_tax?
-      total * 0.09
+      total * (tax_percentage.to_f / 100.0)
     else
       Money.new(0)
     end

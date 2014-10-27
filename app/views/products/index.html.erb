@@ -59,9 +59,9 @@
             <div class="c-1">
               <%= product.dimensions %>
             </div>
-            <div class="nmlxxxs mtxxxs clearfix">
+            <div class="nmlxxxs clearfix">
               <% product.tags.each do |tag| %>
-                <div class="paxxxs mlxxxs bg-2 c-4 fsxxxs braxs pull-left pointer js-product-tag" data-id="<%= tag.id %>">
+                <div class="paxxxs mlxxxs mtxxxs bg-2 c-4 fsxxxs braxs pull-left pointer js-product-tag" data-id="<%= tag.id %>">
                   <%= tag.name %>
                 </div>
               <% end %>

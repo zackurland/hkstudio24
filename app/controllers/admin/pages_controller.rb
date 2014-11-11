@@ -7,6 +7,7 @@ class Admin::PagesController < AdminController
 
   def edit
     @page = Page.find(params[:id])
+    @editables = @page.editables.order(:id)
   end
 
   def update

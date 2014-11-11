@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027232437) do
+ActiveRecord::Schema.define(version: 20141111173704) do
 
   create_table "agreements", force: true do |t|
     t.string  "name"
@@ -53,8 +53,15 @@ ActiveRecord::Schema.define(version: 20141027232437) do
   end
 
   create_table "editables", force: true do |t|
+    t.string  "name"
+    t.text    "text"
+    t.integer "page_id"
+    t.text    "display_start"
+    t.text    "display_end"
+  end
+
+  create_table "pages", force: true do |t|
     t.string "name"
-    t.text   "text"
   end
 
   create_table "products", force: true do |t|

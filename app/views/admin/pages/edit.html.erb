@@ -1,0 +1,29 @@
+<div class="fsm">
+  Edit <%= @page.name %>
+</div>
+<% if @page.errors.any? %>
+  <% @page.errors.full_messages.each do |message| %>
+    <div class="mtxxxs-plus c-red">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+<%= form_for [:admin, @page] do |f| %>
+  <div class="row nmhxs">
+    <div class="col-lg-8 phxs">
+      <%= f.fields_for :editables do |editables_fields| %>
+        <div class="row nmhxs mtm">
+          <div class="col-sm-3 phxs">
+            <div class="pvxs">
+              <%= editables_fields.object.name %>
+            </div>
+          </div>
+          <div class="col-sm-9 phxs">
+            <%= editables_fields.text_area :text, class: "paxs dvxxxxl bss bwas bc-4 full-width" %>
+          </div>
+        </div>
+      <% end %>
+      <%= f.submit class: "btn btn-primary mtm full-width" %>
+    </div>
+  </div>
+<% end %>

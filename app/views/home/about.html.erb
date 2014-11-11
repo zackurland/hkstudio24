@@ -18,7 +18,9 @@
   <div class="row nmhxs">
     <div class="col-sm-10 phxs">
       <div id="about" class="mtl">
-        <%= Editable.where(name: "About").last.text.html_safe %>
+        <% Page.where(name: "about").last.editables.each do |editable| %>
+          <%= editable.display %>
+        <% end %>
       </div>
     </div>
   </div>

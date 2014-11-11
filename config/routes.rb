@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       end
     end
     resources :agreements
-    resources :editables
+    resources :pages
   end
 
   resources :products

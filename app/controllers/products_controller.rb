@@ -9,6 +9,6 @@ class ProductsController < ApplicationController
     else
       @products = Product.active.includes(:tags)
     end
-    @products = @products.order(:display_index).paginate(page: params[:page], per_page: 50)
+    @products = @products.order(:display_index).paginate(page: params[:page], per_page: 20)
   end
 end

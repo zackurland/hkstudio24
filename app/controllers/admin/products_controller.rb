@@ -2,11 +2,11 @@ class Admin::ProductsController < AdminController
   before_action :navigation
 
   def active
-    @products = Product.active.order(:display_index).paginate(page: params[:page], per_page: 50)
+    @products = Product.active.order(:display_index).paginate(page: params[:page], per_page: 20)
   end
 
   def inactive
-    @products = Product.inactive.order(:display_index).paginate(page: params[:page], per_page: 50)
+    @products = Product.inactive.order(:display_index).paginate(page: params[:page], per_page: 20)
   end
 
   def index
@@ -60,7 +60,7 @@ class Admin::ProductsController < AdminController
   end
 
   def reorder
-    offset = params[:page] ? (params[:page].to_i - 1) * 50 : 0
+    offset = params[:page] ? (params[:page].to_i - 1) * 20 : 0
     params[:sortable].each_with_index do |id, index|
       Product.find(id).update_column(:display_index, index + offset + 1)
     end

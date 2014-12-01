@@ -71,7 +71,7 @@ class Admin::ProductsController < AdminController
   private
 
   def product_params
-    params.require(:product).permit(:active, :name, :dimensions, :production_rental_price, :short_rental_price, photo_attributes: [:id, :attachment], tag_ids: [])
+    params.require(:product).permit(:active, :name, :dimensions, :production_rental_price, :short_rental_price, :display_index, photo_attributes: [:id, :attachment], tag_ids: [])
   end
 
   def navigation

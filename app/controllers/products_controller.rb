@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
       product_ids = Product.active.joins(:tags).where(tags: {id: @tag_ids}).group(:product_id).count.keep_if{|k, v| v >= params[:q].count}.keys
       @products = Product.includes(:tags).where(products: { id: product_ids}).uniq
     else
-      @products = Product.active.includes(:tags)
+      @products = Product.active.includes(:tags).uniq
     end
     @products = @products.order(:display_index).paginate(page: params[:page], per_page: 20)
   end

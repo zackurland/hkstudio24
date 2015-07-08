@@ -17,7 +17,7 @@ class Product < ActiveRecord::Base
   private
 
   def set_display_index
-    update_attributes({display_index: Product.where(active: active).last.try(:display_index).to_i + 1})
+    update_attributes({display_index: Product.where(active: active).order(display_index: :asc).last.try(:display_index).to_i + 1})
   end
 
 end

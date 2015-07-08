@@ -11,4 +11,13 @@ class Product < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
+
+  after_create :set_display_index
+
+  private
+
+  def set_display_index
+    update_attributes({display_index: Product.where(active: active).last.try(:display_index).to_i + 1})
+  end
+
 end

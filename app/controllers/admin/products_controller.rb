@@ -2,7 +2,11 @@ class Admin::ProductsController < AdminController
   before_action :navigation
 
   def active
-    @products = Product.active.order(:display_index).paginate(page: params[:page], per_page: 20)
+    if params[:query].present?
+      @products = Product.active.where("lower(name) = ?", params[:query].downcase).order(:display_index).paginate(page: params[:page], per_page: 20)
+    else
+      @products = Product.active.order(:display_index).paginate(page: params[:page], per_page: 20)
+    end
   end
 
   def inactive

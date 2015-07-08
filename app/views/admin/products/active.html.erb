@@ -17,6 +17,16 @@
     <div class="fsl mtl">
       Active Products
     </div>
+    <%= form_tag active_admin_products_path, method: :get do %>
+      <div class="row nmhxs">
+        <div class="col-sm-9 phxs mtxs">
+          <%= text_field_tag :query, params[:query], class: "phxs dvm lhs bss bwas bc-2 full-width", placeholder: "Product name" %>
+        </div>
+        <div class="col-sm-3 phxs mtxs">
+          <%= submit_tag "search", class: "phxs dvm lhs bg-accent c-4 full-width" %>
+        </div>
+      </div>
+    <% end %>
     <table class="row nmhxs mtm full-width">
       <tbody class="js-sortable" data-url=<%= reorder_admin_products_url(page: params[:page], per_page: params[:per_page]) %>>
         <% @products.each_with_index do |product, index| %>

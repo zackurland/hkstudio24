@@ -128,6 +128,11 @@ table {
   overflow: hidden;
 }
 
+.scroll-y {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
 .no-select {
   -webkit-touch-callout: none;
   -webkit-user-select: none;

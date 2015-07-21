@@ -1,38 +1,58 @@
 <div class="row nmhxs">
-  <div class="col-lg-6 phxs">
-    <table class="full-width">
-      <tr>
-        <td class="c-1 fsm">
-          Active Products
-        </td>
-        <td class="pll">
-          <div class="pull-right">
-            <% if @active_products_count > 0 %>
-              <%= link_to @active_products_count, active_admin_products_path, class: "btn btn-primary pvxxxs phs fsm" %>
-            <% else %>
-              <div class="pvxxxs phs bg-2 c-4 fsm">
-                0
+  <div class="col-lg-8 phxs">
+    <%= link_to new_admin_product_path do %>
+      <table>
+        <tr>
+          <td>
+            <div class="btn btn-primary pan dam bg-accent">
+              <i class="fa fa-plus c-4 fsl lhm"></i>
+            </div>
+          </td>
+          <td class="plxs c-1 fss">
+            Add Product
+          </td>
+        </tr>
+      </table>
+    <% end %>
+    <%= form_tag admin_products_path, method: :get do %>
+      <div class="row nmhxs">
+        <div class="col-sm-9 phxs mtxs">
+          <%= text_field_tag :query, params[:query], class: "phxs dvm lhs bss bwas bc-2 full-width", placeholder: "Product name" %>
+        </div>
+        <div class="col-sm-3 phxs mtxs">
+          <%= submit_tag "search", class: "phxs dvm lhs bg-accent c-4 full-width" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="mtm js-admin-infinite-scroll<%= " js-sortable" unless params[:query].present? %>" data-url=<%= reorder_admin_products_url(page: params[:page], per_page: params[:per_page]) %>>
+      <% @products.each_with_index do |product, index| %>
+        <div id="<%= "sortable-#{product.id}" %>" class="mtxxxs-plus ptxxxs-plus bss bwts-plus bc-2 js-admin-product">
+          <div class="row nmhxs">
+            <% unless params[:query].present? %>
+              <div class="col-sm-1 phxs">
+                <i class="fa fa-arrows"></i>
               </div>
             <% end %>
+            <div class="col-sm-1 phxs js-sortable-index">
+              <%= product.display_index %>
+            </div>
+            <div class="col-sm-2 phxs">
+              <%= image_tag product.photo.url(:thumbnail), class: "img-responsive" %>
+            </div>
+            <div class="col-sm-6 phxs fwl">
+              <%= link_to product.name, admin_product_path(product), class: "c-accent-hover" %>
+            </div>
+            <div class="col-sm-2 phxs">
+              <%= link_to edit_admin_product_path(product), class: "btn btn-primary full-width" do %>
+                <i class="fa fa-edit"></i> <span class="hidden-xs">Edit</span>
+              <% end %>
+            </div>
           </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="ptl c-1 fsm">
-          Inactive Products
-        </td>
-        <td class="ptl pll">
-          <div class="pull-right">
-            <% if @inactive_products_count > 0 %>
-              <%= link_to @inactive_products_count, inactive_admin_products_path, class: "btn btn-primary pvxxxs phs fsm" %>
-            <% else %>
-              <div class="pvxxxs phs bg-2 c-4 fsm">
-                0
-              </div>
-            <% end %>
-          </div>
-        </td>
-      </tr>
-    </table>
+        </div>
+      <% end %>
+    </div>
+    <div class="mtxs text-center">
+      <%= will_paginate(@products) %>
+    </div>
   </div>
 </div>

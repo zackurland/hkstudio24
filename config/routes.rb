@@ -5,8 +5,6 @@ Rails.application.routes.draw do
     resources :products do
       collection do
         post :reorder
-        get :active
-        get :inactive
       end
     end
     resources :categories do

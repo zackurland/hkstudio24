@@ -1,21 +1,12 @@
 class Admin::ProductsController < AdminController
   before_action :navigation
 
-  def active
-    if params[:query].present?
-      @products = Product.active.where("lower(name) = ?", params[:query].downcase).order(:display_index).paginate(page: params[:page], per_page: 20)
-    else
-      @products = Product.active.order(:display_index).paginate(page: params[:page], per_page: 20)
-    end
-  end
-
-  def inactive
-    @products = Product.inactive.order(:display_index).paginate(page: params[:page], per_page: 20)
-  end
-
   def index
-    @active_products_count = Product.active.count
-    @inactive_products_count = Product.inactive.count
+    if params[:query].present?
+      @products = Product.where("lower(name) = ?", params[:query].downcase).paginate(page: params[:page], per_page: 100).order(:display_index)
+    else
+      @products = Product.paginate(page: params[:page], per_page: 100).order(:display_index)
+    end
   end
 
   def new

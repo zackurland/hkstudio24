@@ -22,3 +22,15 @@ $(document).ready ->
           image.src = $(this).attr("src")
       $(arrayOfNewElems).each ->
         $(@).find('.js-lightbox').magnificPopup({type:'image'})
+
+  $(".js-admin-infinite-scroll").each ->
+    $(@).infinitescroll
+      navSelector  : ".pagination:last"
+      nextSelector : ".pagination:last a.next_page"
+      itemSelector : ".js-admin-product"
+      bufferPx     : 800,
+      donetext     : "",
+    , (arrayOfNewElems) ->
+      console.log("ok")
+      $html = $(arrayOfNewElems)
+      $("#infscr-loading").remove()

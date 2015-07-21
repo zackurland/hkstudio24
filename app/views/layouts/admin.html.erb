@@ -9,63 +9,61 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="absolute top left fill zxs">
-    <div class="row mhn">
-      <div class="col-sm-3 phn absolute top bottom bg-1 hidden-xs" style="overflow-y: auto">
-        <div class="absolute top left right dvl">
-          <div class="dvl lhl c-4 fsl text-center">
-            <%= link_to "HK STUDIO", root_path %>
+  <div class="row mhn">
+    <div class="col-sm-3 phn">
+      <div class="bg-1 js-scroll-with-screen" data-fix-limit-px="768">
+        <div class="dvl lhl c-4 fsl text-center">
+          <%= link_to "HK STUDIO", root_path %>
+        </div>
+        <div class="c-4 fss bss bwvs bc-2">
+          <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "products" %>">
+            <%= link_to admin_products_path do %>
+              <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
+                Products
+              </div>
+            <% end %>
           </div>
-          <div class="c-4 fss bss bwvs bc-2">
-            <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "products" %>">
-              <%= link_to admin_products_path do %>
-                <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
-                  Products
-                </div>
-              <% end %>
-            </div>
-            <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "categories" %>">
-              <%= link_to admin_categories_path do %>
-                <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
-                  Categories
-                </div>
-              <% end %>
-            </div>
-            <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "rentals" %>">
-              <%= link_to admin_rentals_path do %>
-                <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
-                  Requests
-                </div>
-              <% end %>
-            </div>
-            <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "agreements" %>">
-              <%= link_to admin_agreements_path do %>
-                <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
-                  Agreements
-                </div>
-              <% end %>
-            </div>
-            <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "pages" %>">
-              <%= link_to admin_pages_path do %>
-                <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
-                  Pages
-                </div>
-              <% end %>
-            </div>
-            <div class="bss bwts-plus bc-2">
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
-                  Logout
-                </div>
-              <% end %>
-            </div>
+          <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "categories" %>">
+            <%= link_to admin_categories_path do %>
+              <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
+                Categories
+              </div>
+            <% end %>
+          </div>
+          <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "rentals" %>">
+            <%= link_to admin_rentals_path do %>
+              <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
+                Requests
+              </div>
+            <% end %>
+          </div>
+          <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "agreements" %>">
+            <%= link_to admin_agreements_path do %>
+              <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
+                Agreements
+              </div>
+            <% end %>
+          </div>
+          <div class="bss bwts-plus bc-2<%= " active" if @admin_navigation == "pages" %>">
+            <%= link_to admin_pages_path do %>
+              <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
+                Pages
+              </div>
+            <% end %>
+          </div>
+          <div class="bss bwts-plus bc-2">
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <div class="paxs bg-1 bg-2-hover bg-3-active c-1-active bss bwts-plus bc-2">
+                Logout
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-9 col-sm-offset-3 phn pbxxxxl absolute top bottom" style="overflow-y: auto">
-        <div class="pam">
-          <%= yield %>
-        </div>
+    </div>
+    <div class="col-xs-12 col-sm-9 col-sm-offset-3 phn pbxxxxl absolute top bottom">
+      <div class="pam">
+        <%= yield %>
       </div>
     </div>
   </div>

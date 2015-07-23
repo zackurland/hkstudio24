@@ -12,12 +12,12 @@ class Product < ActiveRecord::Base
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
 
-  after_create :set_display_index
+  before_create :set_display_index
 
   private
 
   def set_display_index
-    update_attributes({display_index: Product.order(display_index: :asc).last.try(:display_index).to_i + 1})
+    self.display_index = Product.order(display_index: :asc).last.try(:display_index).to_i + 1
   end
 
 end

@@ -51,7 +51,14 @@ class Admin::ProductsController < AdminController
     @product = Product.find(params[:id])
 
     @product.destroy
-    redirect_to :index
+    respond_to do |format|
+      format.html do
+        redirect_to :index
+      end
+      format.json do
+        render json: { id: @product.id }
+      end
+    end
   end
 
   def reorder

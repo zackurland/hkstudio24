@@ -43,9 +43,16 @@
               <%= link_to product.name, admin_product_path(product), class: "c-accent-hover" %>
             </div>
             <div class="col-sm-2 phxs">
-              <%= link_to edit_admin_product_path(product), class: "btn btn-primary full-width" do %>
-                <i class="fa fa-edit"></i> <span class="hidden-xs">Edit</span>
-              <% end %>
+              <div>
+                <%= link_to edit_admin_product_path(product), class: "btn btn-primary full-width" do %>
+                  <i class="fa fa-edit"></i> <span class="hidden-xs">Edit</span>
+                <% end %>
+              </div>
+              <div class="mtxxxs">
+                <%= link_to admin_product_path(product), class: "btn btn-primary full-width js-admin-product-remove", method: :delete, remote: true, data: { type: "json" } do %>
+                  <i class="fa fa-times"></i> <span class="hidden-xs">Remove</span>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>

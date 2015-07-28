@@ -23,6 +23,9 @@
             <td class="paxs fss">
               <%= tag.name %>
             </td>
+            <td class="paxs">
+              <%= link_to "remove", admin_tag_path(tag), class: "btn btn-primary", method: :delete %>
+            </td>
           </tr>
         <% end %>
       </tbody>

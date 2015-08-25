@@ -37,7 +37,7 @@
                   <% if @tag_ids.present? && @tag_ids.include?(tag.id.to_s) %>
                     <%= tag.name %>
                   <% else %>
-                    <% tags_hash = params[:q].to_hash || {} %>
+                    <% tags_hash = params[:q].try(:to_hash) || {} %>
                     <% tags_hash["#{category.id}"] ||= [] %>
                     <% tags_hash["#{category.id}"] += [tag.id] %>
                     <%= tag.name %> <span class="c-2">(<%= Product.filter(tags_hash).count %>)</span>

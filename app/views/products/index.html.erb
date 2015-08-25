@@ -34,7 +34,14 @@
                   <div class="daxxs bg-3 bg-accent-active braxxs"></div>
                 </td>
                 <td class="plxxxs">
-                  <%= tag.name %>
+                  <% if @tag_ids.present? && @tag_ids.include?(tag.id.to_s) %>
+                    <%= tag.name %>
+                  <% else %>
+                    <% tags_hash = params[:q].to_hash || {} %>
+                    <% tags_hash["#{category.id}"] ||= [] %>
+                    <% tags_hash["#{category.id}"] += [tag.id] %>
+                    <%= tag.name %> <span class="c-2">(<%= Product.filter(tags_hash).count %>)</span>
+                  <% end %>
                 </td>
               </tr>
             </table>

@@ -14,6 +14,15 @@ class Product < ActiveRecord::Base
 
   before_create :set_display_index
 
+  product_ids = Product.joins(:tags).where(tags: {id: @tag_ids}).group(:product_id).count.keep_if{|k, v| v >= params[:q].count}.keys
+  @products = Product.includes(:tags).where(products: { id: product_ids}).uniq
+
+  def self.filter(tag_hash)
+    tag_ids = tag_hash.values.flatten
+    product_ids = Product.joins(:tags).where(tags: {id: tag_ids}).group(:product_id).count.keep_if{|k, v| v >= tag_hash.count}.keys
+    Product.includes(:tags).where(products: { id: product_ids}).uniq
+  end
+
   private
 
   def set_display_index

@@ -38,8 +38,7 @@
                     <%= tag.name %>
                   <% else %>
                     <% tags_hash = params[:q].try(:to_hash) || {} %>
-                    <% tags_hash["#{category.id}"] ||= [] %>
-                    <% tags_hash["#{category.id}"] += [tag.id.to_s] %>
+                    <% tags_hash["#{category.id}"] = [tag.id.to_s] %>
                     <%= tag.name %> <span class="c-2">(<%= Product.filter(tags_hash).count %>)</span>
                   <% end %>
                 </td>

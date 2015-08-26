@@ -17,7 +17,7 @@ class Product < ActiveRecord::Base
   def self.filter(tag_hash)
     product_id_counts = {}
     tag_hash.each do |category_id, tag_ids|
-      Product.joins(:tags).where(tags: { id: tag_ids}).map(&:id).each do |product_id|
+      Product.joins(:tags).where(tags: { id: tag_ids}).group(:id).map(&:id).each do |product_id|
         product_id_counts[product_id] ||= 0
         product_id_counts[product_id] = product_id_counts[product_id] + 1
       end

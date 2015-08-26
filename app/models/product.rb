@@ -15,10 +15,14 @@ class Product < ActiveRecord::Base
   before_create :set_display_index
 
   def self.filter(tag_hash)
-    category_ids = tag_hash.keys
-    tag_ids = tag_hash.values.flatten
-    product_ids = Product.joins(:tags).where(tags: {id: tag_ids}).group("products.id").select{|product| product.would_show_up_for(tag_hash)}.map(&:id)
-    Product.where(id: product_ids).includes(:tags)
+    product_id_counts = {}
+    tag_hash.each do |category_id, tag_ids|
+      Product.joins(:tags).where(tags: { id: tag_ids}).map(&:id).each do |product_id|
+        product_id_counts[product_id] ||= 0
+        product_id_counts[product_id] = product_id_counts[product_id] + 1
+      end
+    end
+    Product.where(id: product_id_counts.keep_if{|k, v| v >= tag_hash.count }.keys)
   end
 
   def would_show_up_for(tag_hash)

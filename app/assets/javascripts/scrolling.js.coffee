@@ -5,8 +5,9 @@ $(document).ready ->
       nextSelector : ".pagination:last a.next_page"
       itemSelector : ".js-product-display"
       bufferPx     : 800,
-      donetext     : "",
+      donetext     : ""
     , (arrayOfNewElems) ->
+      $(".js-infinite-scroll-loader").removeClass("hide")
       $html = $(arrayOfNewElems)
       $("#infscr-loading").remove()
       loadedImagesCount = 0
@@ -19,6 +20,7 @@ $(document).ready ->
             if loadedImagesCount == $images.length
               $(".js-masonry").masonry('appended', $html)
               $(".js-masonry").masonry()
+              $(".js-infinite-scroll-loader").addClass("hide")
           image.src = $(this).attr("src")
       $(arrayOfNewElems).each ->
         $(@).find('.js-lightbox').magnificPopup({type:'image'})
@@ -31,6 +33,5 @@ $(document).ready ->
       bufferPx     : 800,
       donetext     : "",
     , (arrayOfNewElems) ->
-      console.log("ok")
       $html = $(arrayOfNewElems)
       $("#infscr-loading").remove()

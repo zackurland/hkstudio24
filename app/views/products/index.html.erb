@@ -1,52 +1,55 @@
-<%= content_for :navigation do %>
-  <div class="c-accent fsxs text-center">
-    <%= link_to "/cart" do %>
-      <table class="mha">
-        <tr>
-          <td>
-            View Your Cart
-          </td>
-          <td class="plxs">
-            (<span class="js-cart-items-count"><%= current_cart.items.count %></span>)
-          </td>
-          <td class="plxs">
-            <i class="fa fa-shopping-cart fsm"></i>
-          </td>
-        </tr>
-      </table>
-    <% end %>
-  </div>
-  <% if @categories.any? %>
-    <hr class="bss bwtm bc-3"/>
-    <div class="c-2 fsxs">
-      Filter By:
+<% unless params[:skip_navigation] == "1" %>
+  <%= content_for :navigation do %>
+    <div class="c-accent fsxs text-center">
+      <%= link_to "/cart" do %>
+        <table class="mha">
+          <tr>
+            <td>
+              View Your Cart
+            </td>
+            <td class="plxs">
+              (<span class="js-cart-items-count"><%= current_cart.items.count %></span>)
+            </td>
+            <td class="plxs">
+              <i class="fa fa-shopping-cart fsm"></i>
+            </td>
+          </tr>
+        </table>
+      <% end %>
     </div>
-    <% @categories.each do |category| %>
-      <div class="ptxs mtxs-plus fsxxs bss bwtm-plus bc-3">
-        <div class="fwl">
-          <%= category.name %>
+    <% if @categories.any? %>
+      <hr class="bss bwtm bc-3"/>
+      <div class="c-2 fsxs">
+        Filter By:
+      </div>
+      <% if params[:q].present? %>
+        <div class="mtxs">
+          <%= link_to "clear filters", root_path, class: "c-accent" %>
         </div>
-        <% category.tags.order(:display_index).each do |tag| %>
-          <div id="tag-<%= tag.id %>" class="mtxxxs pointer no-select js-category-tag<%= " active" if @tag_ids.present? && @tag_ids.include?(tag.id.to_s) %>" data-id="<%= tag.id %>" data-category-id="<%= category.id %>">
-            <table>
-              <tr>
-                <td>
-                  <div class="daxxs bg-3 bg-accent-active braxxs"></div>
-                </td>
-                <td class="plxxxs">
-                  <% if @tag_ids.present? && @tag_ids.include?(tag.id.to_s) %>
-                    <%= tag.name %>
-                  <% else %>
+      <% end %>
+      <% @categories.each do |category| %>
+        <div class="ptxs mtxs-plus fsxxs bss bwtm-plus bc-3">
+          <div class="fwl">
+            <%= category.name %>
+          </div>
+          <% category.tags.order(:display_index).each do |tag| %>
+            <div id="tag-<%= tag.id %>" class="mtxxxs pointer no-select js-category-tag<%= " active" if @tag_ids.present? && @tag_ids.include?(tag.id.to_s) %>" data-id="<%= tag.id %>" data-category-id="<%= category.id %>">
+              <table>
+                <tr>
+                  <td>
+                    <div class="daxxs bg-3 bg-accent-active braxxs"></div>
+                  </td>
+                  <td class="plxxxs">
                     <% tags_hash = params[:q].try(:to_hash) || {} %>
                     <% tags_hash["#{category.id}"] = [tag.id.to_s] %>
                     <%= tag.name %> <span class="c-2">(<%= Product.filter(tags_hash).count %>)</span>
-                  <% end %>
-                </td>
-              </tr>
-            </table>
-          </div>
-        <% end %>
-      </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
@@ -86,7 +89,7 @@
     <% end %>
   </div>
   <div class="text-center">
-    <%= will_paginate @products %>
+    <%= will_paginate @products, params: { skip_navigation: "1" } %>
   </div>
   <div class="mtm text-center hide js-infinite-scroll-loader">
     <%= image_tag "loading.gif" %>

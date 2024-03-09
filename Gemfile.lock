@@ -88,6 +88,7 @@ GEM
       actionmailer (>= 3.2, < 5)
       activemodel (>= 3.2, < 5)
     method_source (0.8.2)
+    mimemagic (0.3.10)
     mime-types (1.25.1)
     minitest (5.4.0)
     monetize (0.3.0)
